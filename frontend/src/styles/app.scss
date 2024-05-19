@@ -1,0 +1,258 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  user-select: none;
+  background-image: url("../assets/background.jpg");
+  background-repeat: repeat-y;
+  overflow-x: hidden;
+  background-size: 1920px 1080px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+$color1: white;
+$color2: rgb(46, 46, 46);
+$color3: rgb(212, 215, 55);
+
+.red {
+  color: red;
+}
+.purple {
+  color: rgb(47, 0, 255);
+}
+.green {
+  color: rgb(0, 195, 0);
+}
+
+@import "home";
+@import "mediaqueries";
+@import "explore";
+@import "whatwedo";
+@import "career";
+@import "casestudies";
+@import "webdev";
+@import "contact";
+
+@mixin flex(
+  $dir: row,
+  $justifyContent: center,
+  $alignItems: center,
+  $gap: 1rem
+) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  gap: $gap;
+}
+
+.header {
+  @include flex(row, flex-end, stretch, 1.2rem);
+  background-color: #311973;
+  width: 100%;
+  height: 3rem;
+  background-color: rgb(49, 25, 115);
+  margin: 0 auto;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  a {
+    color: $color1;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+
+    &:hover {
+      color: $color3;
+    }
+  }
+  .logo {
+    width: 68px;
+    height: 65px;
+    float: left;
+  }
+
+  button {
+    border: 1px solid #fff;
+    color: $color1;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: transparent;
+
+    &:hover {
+      color: $color1;
+      background-color: $color3;
+    }
+  }
+  .options {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    height: 100%;
+
+    @include breakpoint(1030px) {
+      display: none;
+    }
+  }
+  .hamburg {
+    &:hover {
+      cursor: pointer;
+      color: #fff;
+    }
+    @include hamburg(1030px) {
+      display: none;
+    }
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    height: 100%;
+    width: 40%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 1000;
+  }
+
+  .sidebar-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    a,
+    button {
+      color: black;
+    }
+    gap: 30px;
+  }
+  .cross {
+    &:hover {
+      cursor: pointer;
+    }
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px);
+    z-index: 900;
+    pointer-events: none;
+  }
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin-left: 40px;
+  margin-right: 80px;
+  margin-top: auto; /* Ensures footer sticks to the bottom of the page */
+
+  .column {
+    flex: 1;
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    h3 {
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    h4 {
+      color: white;
+      width: 80%;
+    }
+
+    > input {
+      height: 40px;
+      border-radius: 6px;
+      background: none;
+      width: 50%;
+      outline: none;
+      border: 1px solid #7489c6;
+      caret-color: #fff;
+      color: #fff;
+      padding-left: 10px;
+    }
+
+    > span {
+      button {
+        background: #fff;
+        outline: none;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: 0.2s ease;
+        margin-right: 20px;
+      }
+    }
+
+    .reference{
+      display: flex;
+      justify-content: space-between;
+      width: 40%;
+      margin-top: 20px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 8px;
+
+        a {
+          color: white;
+          text-decoration: none;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: gray;
+          }
+
+          svg {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}

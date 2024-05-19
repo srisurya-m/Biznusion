@@ -1,0 +1,29 @@
+.content {
+  // background-color: black;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  height: 70vh; 
+
+  h1 {
+    font-size: 4em;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  p {
+    display: block;
+    color: white;
+    font-size: larger;
+    margin-top: 10px;
+  }
+  hr {
+    width: 20%;
+    border: 0;
+    height: 1px;
+    background-color: white;
+  }
+}

@@ -1,0 +1,39 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    .contact-center-form {
+      padding: 10px;
+      background-color: rgb(0, 0, 0);
+      width: 50%;
+  
+      .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        input {
+          padding: 10px;
+          margin-bottom: 10px;
+        }
+        > label {
+          margin-bottom: 20px;
+          color: white;
+        }
+        > button {
+            padding: 10px 20px;
+            width: 15%;
+            background-color: gold;
+            color: black !important;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover{
+                background-color: white;
+                color: black;
+            }
+        }
+      }
+    }
+  }
+  

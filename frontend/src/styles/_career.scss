@@ -1,0 +1,33 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    .center {
+      padding: 10px;
+      background-color: black;
+      width: 60%;
+      color: white;
+    .heading{
+        text-align: center;
+      }
+
+    .webdev{ 
+        padding: 20px;
+        a {
+            text-decoration: none;
+            color: white;
+            position: relative;
+          
+            &::after {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 1px;
+              background-color: white; 
+            }
+          }
+    }
+    }
+  }

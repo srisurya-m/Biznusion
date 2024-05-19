@@ -1,0 +1,40 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  .center-form {
+    .webdev {
+      padding: 20px;
+    }
+    padding: 10px;
+    background-color: rgb(69, 65, 65);
+    width: 50%;
+    color: white;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      input {
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      > label {
+        margin-bottom: 20px;
+      }
+      > button {
+        outline: none;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        &:hover{
+          background-color: #002fff;
+        }
+        width: 100%;
+      }
+    }
+  }
+}
