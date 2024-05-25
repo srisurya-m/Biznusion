@@ -166,6 +166,33 @@ $color3: rgb(212, 215, 55);
     pointer-events: none;
   }
 }
+.skeleton-loader {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+}
+.skeleton-shape {
+  height: 20px;
+  width: 100%;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  animation: skeleon-loading 1.5s infinite;
+}
+
+@keyframes skeleon-loading {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+
 
 .footer {
   position: relative;

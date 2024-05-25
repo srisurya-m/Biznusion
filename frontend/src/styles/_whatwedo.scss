@@ -1,11 +1,102 @@
-.main {
+@keyframes colorChange {
+  0% { color: #FFFFFF; }     /* White */
+  20% { color: #F5F5F5; }    /* White Smoke */
+  40% { color: #F0F8FF; }    /* Alice Blue */
+  60% { color: #E6E6FA; }    /* Lavender */
+  80% { color: #FAFAD2; }    /* Light Goldenrod Yellow */
+  100% { color: #FFFFFF; }   /* White */
+}
+
+.whatwedo-main {
   display: flex;
-  justify-content: center;
-  margin-top: 35px;
-  .center {
-    padding: 10px;
-    background-color: black;
-    width: 60%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+
+  h2 {
+    margin-top: 80px;
+    margin-bottom: 80px;
     color: white;
+    text-align: center;
+    font-size: 2.8rem;
+  }
+
+  .whatwedo-center {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    text-align: center;
+
+    .content-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(2px);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+
+      &:hover {
+        width: 300px;
+        height: 300px;
+        border-radius: 15px;
+        background-color: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(80px);
+      }
+
+      .heading,
+      .content {
+        transition: opacity 0.3s ease;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        text-align: center;
+      }
+
+      .heading {
+        font-size: 1rem;
+        opacity: 1;
+      }
+
+      &:hover .heading {
+        opacity: 0;
+      }
+
+      .content {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        opacity: 0;
+
+        svg {
+          font-size: 4rem; /* Icon size */
+          margin-bottom: 10px;
+          color: #FFD700; /* Initial gold color */
+          transition: color 0.3s ease;
+        }
+      }
+
+      &:hover .content {
+        display: flex;
+        opacity: 1;
+      }
+
+      &:hover .content svg {
+        animation: colorChange 3s infinite;
+      }
+    }
   }
 }
