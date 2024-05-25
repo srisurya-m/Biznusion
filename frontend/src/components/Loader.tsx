@@ -7,14 +7,6 @@ const Loader = () => {
           <div className="skeleton-shape"></div>
           <div className="skeleton-shape"></div>
           <div className="skeleton-shape"></div>
-          <div className="skeleton-shape"></div>
-          <div className="skeleton-shape"></div>
-          <div className="skeleton-shape"></div>
-          <div className="skeleton-shape"></div>
-          <div className="skeleton-shape"></div>
-          <div className="skeleton-shape"></div>
-          <div className="skeleton-shape"></div>
-          <div className="skeleton-shape"></div>
         </div>
       );
 };
