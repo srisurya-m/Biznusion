@@ -1,10 +1,22 @@
 @keyframes colorChange {
-  0% { color: #FFFFFF; }     /* White */
-  20% { color: #F5F5F5; }    /* White Smoke */
-  40% { color: #F0F8FF; }    /* Alice Blue */
-  60% { color: #E6E6FA; }    /* Lavender */
-  80% { color: #FAFAD2; }    /* Light Goldenrod Yellow */
-  100% { color: #FFFFFF; }   /* White */
+  0% {
+    color: #ffffff;
+  } /* White */
+  20% {
+    color: #f5f5f5;
+  } /* White Smoke */
+  40% {
+    color: #f0f8ff;
+  } /* Alice Blue */
+  60% {
+    color: #e6e6fa;
+  } /* Lavender */
+  80% {
+    color: #fafad2;
+  } /* Light Goldenrod Yellow */
+  100% {
+    color: #ffffff;
+  } /* White */
 }
 
 .whatwedo-main {
@@ -82,9 +94,9 @@
         opacity: 0;
 
         svg {
-          font-size: 4rem; /* Icon size */
+          font-size: 4rem;
           margin-bottom: 10px;
-          color: #FFD700; /* Initial gold color */
+          color: #ffd700;
           transition: color 0.3s ease;
         }
       }

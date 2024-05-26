@@ -1,68 +1,229 @@
 @import "mediaqueries";
+
 .homepage {
-    padding-bottom: 200px; /* Adjust as needed to increase the height */
-    h1{
-        color: $color1;
-        font-size: 3rem;
-        max-width: 630px;
-        line-height: 65px;
-        margin: 170px 0 0 20px; 
+    padding-bottom: 200px;
+    @include breakpoint(1024px){
+        padding-top: 200px;
+        padding-bottom: 400px; 
+    }
+
+  .background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  h1 {
+    color: $color1;
+    font-size: 3rem;
+    max-width: 630px;
+    line-height: 65px;
+    margin: 170px 20px 0;
+    @include breakpoint(1024px) {
+      font-size: 2.5rem;
+      line-height: 55px;
+      margin: 150px 20px 0;
+    }
+    @include breakpoint(768px) {
+      font-size: 2rem;
+      line-height: 45px;
+      margin: 130px 20px 0;
+    }
+    @include breakpoint(480px) {
+      font-size: 1.5rem;
+      line-height: 35px;
+      margin: 110px 10px 0;
     }
   }
-
-.search{
-    width: 50%;
-    margin:20px; 
-    height:50px;
-    margin: 20px 0 0 0;
-    display: flex;
-    >input{
-        margin: 20px 0 0 20px;
-        width:100%;
-        height: 100%;
-        font-size: 16px;
-        color: #fff;
-        padding: 10px;
-        border-radius: 4px 0 0 4px;
-        &:focus{
-                outline: none;
-        }
-    }
-    >button{
-        margin: 20px 0 0 0px;
-        height: 100%;
-        width: 60px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        background: #6021ff;
-        color: #fff;
-        border-radius: 0 4px 4px 0;
-        transition: background 0.2s ease;
-        &:hover {
-            background-color: gold;
-        }
-    }
 }
 
-.options{
-    margin: 20px; 
-    margin-top: 30px;
-    > button{
-        background-color: transparent;
-        color: #fff;
-        border: 1px solid #fff;
-        padding: 4px 12px;
-        margin:5px;
-        border-radius: 50px;
-        transition: 0.2s ease;
-        &:hover {
-            background-color: #fff;
-            color: black;
-            cursor: pointer;
-        }
-        @include breakpoint(916px){
-            display: none;
-        }
+.search {
+  width: 70%;
+  margin: 20px 0;
+  height: 50px;
+  display: flex;
+  padding: 0 20px;
+  box-sizing: border-box;
+  @include breakpoint(768px) {
+    padding: 0 10px;
+  }
+  @include breakpoint(480px) {
+    padding: 0 5px;
+  }
+  > input {
+    width: calc(
+      100% - 60px
+    );
+    height: 100%;
+    font-size: 16px;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px 0 0 4px;
+    &:focus {
+      outline: none;
     }
+  }
+  > button {
+    height: 100%;
+    width: 60px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #6021ff;
+    color: #fff;
+    border-radius: 0 4px 4px 0;
+    transition: background 0.2s ease;
+    &:hover {
+      background-color: gold;
+    }
+  }
+}
+
+.options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin-top: 30px;
+  @include breakpoint(768px) {
+    padding: 0 10px;
+  }
+  @include breakpoint(480px) {
+    padding: 0 5px;
+  }
+  > button {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 4px 12px;
+    margin: 5px;
+    border-radius: 50px;
+    transition: 0.2s ease;
+    &:hover {
+      background-color: #fff;
+      color: black;
+      cursor: pointer;
+    }
+    @include breakpoint(768px) {
+      padding: 3px 10px;
+    }
+    @include breakpoint(480px) {
+      padding: 2px 8px;
+    }
+  }
+}
+
+.footer {
+//     position: fixed;
+//   bottom: 0;
+//   left: 0;
+//   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #311973;
+  color: #fff;
+  box-sizing: border-box;
+//   z-index: 1000;
+  @include breakpoint(768px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .column {
+    flex: 1;
+    margin: 20px;
+    box-sizing: border-box;
+    @include breakpoint(768px) {
+      margin: 10px 0;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      @include breakpoint(480px) {
+        font-size: 1rem;
+      }
+    }
+
+    h4 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      @include breakpoint(480px) {
+        font-size: 0.9rem;
+      }
+    }
+
+    > input {
+      height: 40px;
+      border-radius: 6px;
+      background: none;
+      width: 70%;
+      outline: none;
+      border: 1px solid #7489c6;
+      caret-color: #fff;
+      color: #fff;
+      padding-left: 10px;
+      @include breakpoint(480px) {
+        width: 100%;
+      }
+    }
+
+    > span {
+      button {
+        background: #fff;
+        outline: none;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: 0.2s ease;
+        margin-right: 20px;
+        @include breakpoint(480px) {
+          margin-right: 0;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .reference {
+      display: flex;
+      justify-content: space-between;
+      width: 40%;
+      margin-top: 20px;
+      @include breakpoint(480px) {
+        width: 100%;
+      }
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 8px;
+
+        a {
+          color: white;
+          text-decoration: none;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: gray;
+          }
+
+          svg {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
 }
