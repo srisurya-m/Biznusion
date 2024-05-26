@@ -2,6 +2,7 @@
 
 .homepage {
     padding-bottom: 200px;
+    height: 100vh;
     @include breakpoint(1024px){
         padding-top: 200px;
         padding-bottom: 400px; 
@@ -21,6 +22,10 @@
     font-size: 3rem;
     max-width: 630px;
     line-height: 65px;
+    height: 130px;
+    @include breakpoint(768px){
+        height:70px;
+    }
     margin: 170px 20px 0;
     @include breakpoint(1024px) {
       font-size: 2.5rem;
