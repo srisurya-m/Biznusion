@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars, FaGlobe, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Header = () => {
+  const [visible, setVisible] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(true);
+    }, 500); // Adjust the delay time as needed
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
-    <nav className="header">
+    <nav className={`header ${visible ? "visible" : ""}`}>
       <Link to={"/"}>
         <img src={logo} className="logo" alt="Biznusion" />
       </Link>

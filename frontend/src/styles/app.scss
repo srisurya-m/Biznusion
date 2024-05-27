@@ -60,7 +60,16 @@ $color3: rgb(212, 215, 55);
   gap: $gap;
 }
 
+.header.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
 .header {
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-100%);
+  opacity: 0;
   @include flex(row, flex-end, stretch, 1.2rem);
   background-color: #311973;
   width: 100%;
