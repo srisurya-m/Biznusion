@@ -5,9 +5,14 @@ import logo from "../assets/logo.png";
 
 const Header = () => {
   const [visible, setVisible] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
   };
 
   useEffect(() => {
@@ -17,9 +22,10 @@ const Header = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
   return (
     <nav className={`header ${visible ? "visible" : ""}`}>
-      <Link to={"/"}>
+      <Link to={"/"} onClick={closeSidebar}>
         <img src={logo} className="logo" alt="Biznusion" />
       </Link>
       <div className="options">
@@ -44,15 +50,15 @@ const Header = () => {
             <div className="cross" onClick={toggleSidebar}>
               <FaTimes />
             </div>
-            <Link to={"/explore"}>Explore</Link>
-            <Link to={"/what-we-do"}>What we do ?</Link>
-            <Link to={"/growth-results"}>Growth Results</Link>
-            <Link to={"/case-studies"}>Case Studies</Link>
-            <Link to={"/career"}>Career</Link>
-            <Link to={"/"}>
+            <Link to={"/explore"} onClick={closeSidebar}>Explore</Link>
+            <Link to={"/what-we-do"} onClick={closeSidebar}>What we do ?</Link>
+            <Link to={"/growth-results"} onClick={closeSidebar}>Growth Results</Link>
+            <Link to={"/case-studies"} onClick={closeSidebar}>Case Studies</Link>
+            <Link to={"/career"} onClick={closeSidebar}>Career</Link>
+            <Link to={"/"} onClick={closeSidebar}>
               <FaGlobe /> English
             </Link>
-            <Link to={"/contact"}>
+            <Link to={"/contact"} onClick={closeSidebar}>
               <button>Contact</button>
             </Link>
           </div>

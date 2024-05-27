@@ -19,12 +19,49 @@
   } /* White */
 }
 
+@keyframes fromBottomLeft {
+  0% {
+    transform: translate(-200%, 200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fromBottomRight {
+  0% {
+    transform: translate(200%, 200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+// Ensure universal box-sizing for all elements
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .whatwedo-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  height: 100vh;
+  height: 175vh;
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  @include breakpoint(768px) {
+    width: 100%;
+    margin-top: 100px;
+  }
 
   h2 {
     margin-top: 80px;
@@ -32,6 +69,18 @@
     color: white;
     text-align: center;
     font-size: 2.8rem;
+
+    @include breakpoint(768px) {
+      font-size: 2rem;
+      margin-top: 60px;
+      margin-bottom: 40px;
+    }
+
+    @include breakpoint(480px) {
+      font-size: 1.5rem;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
   }
 
   .whatwedo-center {
@@ -42,6 +91,9 @@
     background-color: transparent;
     color: white;
     text-align: center;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
 
     .content-container {
       display: flex;
@@ -56,6 +108,14 @@
       overflow: hidden;
       cursor: pointer;
       position: relative;
+
+      &:nth-child(odd) {
+        animation: fromBottomLeft 1s forwards;
+      }
+
+      &:nth-child(even) {
+        animation: fromBottomRight 1s forwards;
+      }
 
       &:hover {
         width: 300px;
@@ -79,6 +139,14 @@
       .heading {
         font-size: 1rem;
         opacity: 1;
+
+        @include breakpoint(768px) {
+          font-size: 0.8rem;
+        }
+
+        @include breakpoint(480px) {
+          font-size: 0.6rem;
+        }
       }
 
       &:hover .heading {
@@ -98,6 +166,14 @@
           margin-bottom: 10px;
           color: #ffd700;
           transition: color 0.3s ease;
+
+          @include breakpoint(768px) {
+            font-size: 3rem;
+          }
+
+          @include breakpoint(480px) {
+            font-size: 2.5rem;
+          }
         }
       }
 

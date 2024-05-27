@@ -71,7 +71,7 @@ const Webdev = () => {
 
   return (
     <div>
-      <div className="main">
+      <div className="form-webdev-main">
         <div className="center-form">
           <h1>Web Developer Internship Application</h1>
           <ul className="webdev">

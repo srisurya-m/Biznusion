@@ -71,7 +71,7 @@ const DataAnalyst = () => {
 
   return (
     <div>
-      <div className="main">
+      <div className="form-webdev-main">
         <div className="center-form">
           <h1>Jr. Data Analyst/Researcher Internship</h1>
           <ul className="webdev">
