@@ -1,6 +1,5 @@
 @import "mediaqueries";
 
-
 .slide-up {
   transform: translateY(100vh);
   transition: transform 0.0001s ease;
@@ -11,27 +10,27 @@
   transition: transform 1.5s ease;
 }
 
-
 .homepage {
+  height: 100vh;
+  @include breakpoint(1024px) {
+    padding-top: 30vh;
     height: 100vh;
-    @include breakpoint(1024px){
-      padding-top: 30vh;
-      height:100vh;
-    }
-    .background-slider {
-      position: absolute;
-      top: 0;
-      left: 0;
+  }
+
+  .background-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+
+    .slick-slide img {
       width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-  
-      .slick-slide img {
-          width: 100%;
-          height: 100vh;
-          object-fit: cover;
-      }
+      height: 100vh;
+      object-fit: cover;
+    }
   }
 
   h1 {
@@ -40,8 +39,8 @@
     max-width: 630px;
     line-height: 65px;
     height: 130px;
-    @include breakpoint(768px){
-        height:70px;
+    @include breakpoint(768px) {
+      height: 70px;
     }
     margin: 170px 20px 0;
     @include breakpoint(1024px) {
@@ -62,6 +61,119 @@
   }
 }
 
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+  margin-top: 30px;
+
+  @include breakpoint(768px) {
+    justify-content: center;
+  }
+
+  .card {
+    position: relative;
+    width: calc(25% - 20px); // Adjust width to fit 4 cards per row with spacing
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+
+    @include breakpoint(1024px) {
+      width: calc(
+        50% - 20px
+      ); // Adjust width to fit 2 cards per row on smaller screens
+    }
+
+    @include breakpoint(768px) {
+      width: calc(100% - 20px); // Adjust width to fit 1 card per row on mobile
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card-content {
+      padding: 15px;
+      background: #fff;
+      height: 100%;
+
+      h3 {
+        margin: 0 0 10px;
+        font-size: 1.5rem;
+        color: #311973;
+      }
+
+      h4 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #6021ff;
+      }
+    }
+
+    .card-hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+
+      p {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      button {
+        background: gold;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+    }
+
+    &:hover {
+      transform: scale(1.05);
+
+      .card-hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.value-text {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 7rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  color: #ffffff;
+}
+
+.sub-text {
+  font-size: 2.5rem;
+  font-family: "Cursive", Georgia, "Times New Roman", Times, serif !important;
+  text-align: center;
+  margin-top: 10px;
+  color: #ffffff;
+}
+
 .search {
   width: 75%;
   margin: 20px 0;
@@ -76,9 +188,7 @@
     padding: 0 5px;
   }
   > input {
-    width: calc(
-      100% - 60px
-    );
+    width: calc(100% - 60px);
     height: 100%;
     font-size: 16px;
     color: #fff;
@@ -139,113 +249,121 @@
   }
 }
 
-.footer {
-    position: relative;
-//   bottom: 0;
-//   left: 0;
-//   width: 100%;
+.carousel-with-content {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #311973;
-  color: #fff;
-  box-sizing: border-box;
-//   z-index: 1000;
-  @include breakpoint(768px) {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+  margin: 30px;
+  width: 70%;
+  margin-left: 18%;
+
+  h2{
+    color: white;
+    font-size: 3rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
   }
 
-  .column {
-    flex: 1;
-    margin: 20px;
-    box-sizing: border-box;
-    @include breakpoint(768px) {
-      margin: 10px 0;
-    }
+  .carousel-item {
+    display: flex;
 
-    h3 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      @include breakpoint(480px) {
-        font-size: 1rem;
-      }
-    }
+    .left {
+      flex: 1;
+      margin-right: 20px;
 
-    h4 {
-      font-size: 1rem;
-      margin-bottom: 10px;
-      @include breakpoint(480px) {
-        font-size: 0.9rem;
-      }
-    }
-
-    > input {
-      height: 40px;
-      border-radius: 6px;
-      background: none;
-      width: 70%;
-      outline: none;
-      border: 1px solid #7489c6;
-      caret-color: #fff;
-      color: #fff;
-      padding-left: 10px;
-      @include breakpoint(480px) {
+      img {
         width: 100%;
+        height: auto;
       }
     }
 
-    > span {
-      button {
-        background: #fff;
-        outline: none;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: 500;
-        transition: 0.2s ease;
-        margin-right: 20px;
-        @include breakpoint(480px) {
-          margin-right: 0;
-          margin-top: 10px;
-        }
-      }
-    }
-
-    .reference {
+    .right {
+      flex: 1;
       display: flex;
-      justify-content: space-between;
-      width: 40%;
-      margin-top: 20px;
-      @include breakpoint(480px) {
-        width: 100%;
+      flex-direction: column; /* Ensure content stacks vertically */
+      justify-content: center;
+      margin-left: 40%;
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #E0F7FA;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
-    }
 
-    ul {
-      list-style-type: none;
-      padding: 0;
-
-      li {
-        margin-bottom: 8px;
+      p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: gray;
 
         a {
-          color: white;
+          color: #0fb7eb;
           text-decoration: none;
-          transition: color 0.3s ease;
+          font-size: 0.945rem;
 
           &:hover {
-            color: gray;
-          }
-
-          svg {
-            margin-right: 5px;
+            text-decoration: underline;
           }
         }
       }
     }
   }
+}
+
+.join {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  height: 90vh;
+  background: url('../assets/join-us.jpg') no-repeat center center; /* Add your image path here */
+  background-size: cover;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.join::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adds a dark overlay */
+  z-index: 0;
+}
+
+.join h1,
+.join button {
+  z-index: 1;
+}
+
+.join h1 {
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 20px;
+}
+
+.join button {
+  background-color: #6021ff; /* Matches the card color */
+  color: white;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  z-index: 1;
+}
+
+.join button:hover {
+  background-color: #4e17cc; /* Slightly darker on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+.join button:active {
+  background-color: #3c13a3; /* Even darker on click */
+  transform: scale(0.95); /* Slightly smaller on click */
 }

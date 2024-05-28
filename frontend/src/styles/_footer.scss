@@ -1,0 +1,106 @@
+.footer {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: transparent;
+    color: #fff;
+    box-sizing: border-box;
+    @include breakpoint(768px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .column {
+      flex: 1;
+      margin: 20px;
+      box-sizing: border-box;
+      @include breakpoint(768px) {
+        margin: 10px 0;
+      }
+  
+      h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        @include breakpoint(480px) {
+          font-size: 1rem;
+        }
+      }
+  
+      h4 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        @include breakpoint(480px) {
+          font-size: 0.9rem;
+        }
+      }
+  
+      > input {
+        height: 40px;
+        border-radius: 6px;
+        background: none;
+        width: 70%;
+        outline: none;
+        border: 1px solid #7489c6;
+        caret-color: #fff;
+        color: #fff;
+        padding-left: 10px;
+        @include breakpoint(480px) {
+          width: 100%;
+        }
+      }
+  
+      > span {
+        button {
+          background: #fff;
+          outline: none;
+          border: none;
+          padding: 10px 15px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: 0.2s ease;
+          margin-right: 20px;
+          @include breakpoint(480px) {
+            margin-right: 0;
+            margin-top: 10px;
+          }
+        }
+      }
+  
+      .reference {
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
+        margin-top: 20px;
+        @include breakpoint(480px) {
+          width: 100%;
+        }
+      }
+  
+      ul {
+        list-style-type: none;
+        padding: 0;
+  
+        li {
+          margin-bottom: 8px;
+  
+          a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+  
+            &:hover {
+              color: gray;
+            }
+  
+            svg {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+  }

@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Loader from "./components/Loader";
+import Footer from "./components/Footer";
 
 //lazy loading
 const Home = lazy(() => import("./pages/Home"));
@@ -33,6 +34,7 @@ function App() {
           </Routes>
           <Toaster position="top-center" />
         </Suspense>
+        <Footer/>
       </Router>
     </>
   );

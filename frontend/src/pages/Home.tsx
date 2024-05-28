@@ -1,26 +1,103 @@
-import { FaFacebook, FaGithub, FaSearch, FaTwitter } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-import Typewriter from "typewriter-effect";
+import { useEffect, useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import Slider from "react-slick";
-// Importing slick carousel CSS files
-import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import Typewriter from "typewriter-effect";
+import cardImage1 from "../assets/cardImage-1.webp";
+import cardImage2 from "../assets/cardImage-2.webp";
+import cardImage3 from "../assets/cardImage-3.webp";
+import cardImage4 from "../assets/cardImage-4.webp";
+import cardImage5 from "../assets/cardImage-5.webp";
+import cardImage6 from "../assets/cardImage-6.webp";
+import cardImage7 from "../assets/cardImage-7.webp";
 import image1 from "../assets/home-bg-1.png";
 import image2 from "../assets/home-bg-2.png";
 import image3 from "../assets/home-bg-3.png";
-import { useEffect, useState } from "react";
+
+const carouselData = [
+  {
+    image: image1,
+    heading: "Heading 1",
+    description: "Description for image 1. <a href='#'>Read more</a>",
+  },
+  {
+    image: image2,
+    heading: "Heading 2",
+    description: "Description for image 2. <a href='#'>Read more</a>",
+  },
+  {
+    image: image3,
+    heading: "Heading 3",
+    description: "Description for image 3. <a href='#'>Read more</a>",
+  },
+];
+
+const cardData = [
+  {
+    image: cardImage1,
+    heading: "CASE STUDY",
+    subHeading:
+      "Creating five-star associate experiences: Marriott International",
+    description:
+      "Biznusion International created a new global HR hub that delivers employee experiences as exceptional as the guest experiences.",
+  },
+  {
+    image: cardImage2,
+    heading: "RESEARCH REPORT",
+    subHeading: "Reinvention in the age of generative Al",
+    description: "This is the description for card 2.",
+  },
+  {
+    image: cardImage3,
+    heading: "CASE STUDY",
+    subHeading: "Generative Al in the driver's seat: BMW",
+    description: "This is the description for card 2.",
+  },
+  {
+    image: cardImage4,
+    heading: "ANNOUNCEMENT",
+    subHeading:
+      "Biznusion takes new steps to help clients scale generative Al responsibly",
+    description: "This is the description for card 2.",
+  },
+  {
+    image: cardImage5,
+    heading: "Card Heading 2",
+    subHeading: "Card Sub-heading 2",
+    description: "This is the description for card 2.",
+  },
+  {
+    image: cardImage6,
+    heading: "Card Heading 2",
+    subHeading: "Card Sub-heading 2",
+    description: "This is the description for card 2.",
+  },
+  {
+    image: cardImage7,
+    heading: "Card Heading 2",
+    subHeading: "Card Sub-heading 2",
+    description: "This is the description for card 2.",
+  },
+  {
+    image: cardImage1,
+    heading: "Card Heading 2",
+    subHeading: "Card Sub-heading 2",
+    description: "This is the description for card 2.",
+  },
+];
 
 const Home = () => {
   const [isAnimated, setIsAnimated] = useState(false);
 
   useEffect(() => {
-    // Delay the animation for a smoother effect
     const timer = setTimeout(() => {
       setIsAnimated(true);
     }, 500);
 
-    return () => clearTimeout(timer); // Clear the timer to avoid memory leaks
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   const typewriterOptions = {
@@ -49,9 +126,15 @@ const Home = () => {
     <>
       <div className="homepage">
         <Slider {...sliderSettings} className="background-slider">
-          <div><img src={image1} alt="Slide 1" /></div>
-          <div><img src={image2} alt="Slide 2" /></div>
-          <div><img src={image3} alt="Slide 3" /></div>
+          <div>
+            <img src={image1} alt="Slide 1" />
+          </div>
+          <div>
+            <img src={image2} alt="Slide 2" />
+          </div>
+          <div>
+            <img src={image3} alt="Slide 3" />
+          </div>
         </Slider>
         <h1 className={`${isAnimated ? "slide-down" : "slide-up"}`}>
           <Typewriter options={typewriterOptions} />
@@ -71,98 +154,49 @@ const Home = () => {
         </div>
       </div>
 
-      {/* footer  */}
-      <footer className="footer">
-        <div className="column">
-          <h3>Info</h3>
-          <ul>
-            <li>
-              <Link to="/">About Us</Link>
-            </li>
-            <li>
-              <Link to="/">Internship</Link>
-            </li>
-            <li>
-              <Link to="/">Contact us</Link>
-            </li>
-            <li>
-              <Link to="/">Case Studies</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="column">
-          <h3>What we do? </h3>
-          <ul>
-            <li>
-              <Link to="/">Data Analysis</Link>
-            </li>
-            <li>
-              <Link to="/">Business Analysis</Link>
-            </li>
-            <li>
-              <Link to="/">Big Data Analysis</Link>
-            </li>
-            <li>
-              <Link to="/">Consulting</Link>
-            </li>
-            <li>
-              <Link to="/">Business Solutions</Link>
-            </li>
-            <li>
-              <Link to="/">Digital Transformation</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="column">
-          <h3>Legal</h3>
-          <ul>
-            <li>
-              <Link to="/">Customer Agreement</Link>
-            </li>
-            <li>
-              <Link to="/">Privacy Policy</Link>
-            </li>
-            <li>
-              <Link to="/">GDPR</Link>
-            </li>
-            <li>
-              <Link to="/">Security</Link>
-            </li>
-            <li>
-              <Link to="/">Testimonials</Link>
-            </li>
-            <li>
-              <Link to="/">Media Kit</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="column">
-          <h3>Newsletter</h3>
-          <h4>
-            Subscribe to our newsletter for a weekly dose of news, updates,
-            helpful tips, and exclusive offers.
-          </h4>
-          <input type="text" placeholder="Your email" />
-          <span>
-            <button>SUBSCRIBE</button>
-          </span>
-          <div className="reference">
-            <Link to={"/"}>
-              <FaFacebook />
-            </Link>
-            <Link to={"/"}>
-              <FaTwitter />
-            </Link>
-            <Link to={"/"}>
-              <FaLinkedin />{" "}
-            </Link>
-            <Link to={"/"}>
-              {" "}
-              <FaGithub />
-            </Link>
+      <div className="card-container">
+        {cardData.map((card, index) => (
+          <div className="card" key={index}>
+            <img src={card.image} alt={`Card ${index + 1}`} />
+            <div className="card-content">
+              <h3>{card.heading}</h3>
+              <h4>{card.subHeading}</h4>
+            </div>
+            <div className="card-hover">
+              <p>{card.description}</p>
+              <button>Expand</button>
+            </div>
           </div>
-        </div>
-      </footer>
+        ))}
+      </div>
+
+      <div className="value-text">360° value</div>
+      <div className="sub-text">
+        Every day, we embrace change and create value for all our stakeholders,
+        in every part of the world.
+      </div>
+
+      <div className="carousel-with-content">
+        <h2>Our Clients</h2>
+        <Slider {...sliderSettings}>
+          {carouselData.map((item, index) => (
+            <div className="carousel-item" key={index}>
+              <section className="left">
+                <img src={item.image} alt={`Carousel ${index + 1}`} />
+              </section>
+              <section className="right">
+                <h3>{item.heading}</h3>
+                <p dangerouslySetInnerHTML={{ __html: item.description }}></p>
+              </section>
+            </div>
+          ))}
+        </Slider>
+      </div>
+
+      <div className="join">
+        <h1>Want to Join Us?</h1>
+        <button>Let's Connect!</button>
+      </div>
     </>
   );
 };
