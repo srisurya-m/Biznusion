@@ -68,7 +68,6 @@ const Login = () => {
         if (!response.data.user.registrationChallenge) {
           navigate(`/${response.data.user._id}`);
         }
-        navigate("/");
       } else {
         toast.error(response.data.message);
       }
