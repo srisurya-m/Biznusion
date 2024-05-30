@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 export interface FormDataType {
   name: string;
   email: string;
@@ -22,4 +24,17 @@ export interface ContactFormType {
   name: string;
   email: string;
   message: string;
+}
+
+export type User={
+  username: string;
+  email: string;
+  photo: string;
+  _id: string | mongoose.Types.ObjectId;
+  registrationChallenge?:string;
+  loginChallenge?:string;
+  credentialPublicKey?:string;
+  credentialID?:string;
+  counter?:number;
+  role?:string;
 }

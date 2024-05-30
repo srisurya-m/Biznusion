@@ -79,17 +79,17 @@ const Footer = () => {
           </span>
           <div className="reference">
             <Link to={"/"}>
-              <FaFacebook />
+              <FaFacebook style={{fontSize:"27px"}}/>
             </Link>
             <Link to={"/"}>
-              <FaTwitter />
+              <FaTwitter style={{fontSize:"27px"}}/>
             </Link>
             <Link to={"/"}>
-              <FaLinkedin />{" "}
+              <FaLinkedin style={{fontSize:"27px"}}/>{" "}
             </Link>
             <Link to={"/"}>
               {" "}
-              <FaGithub />
+              <FaGithub style={{fontSize:"27px"}}/>
             </Link>
           </div>
         </div>

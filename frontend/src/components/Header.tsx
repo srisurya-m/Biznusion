@@ -1,18 +1,42 @@
 import { useEffect, useState } from "react";
-import { FaBars, FaGlobe, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaBars, FaGlobe, FaTimes, FaUserAlt } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { useSelector } from "react-redux";
+import { userReducerInitialState } from "../types/reducerTypes";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import toast from "react-hot-toast";
 
 const Header = () => {
+  const { user, loading } = useSelector(
+    (state: { userReducer: userReducerInitialState }) => state.userReducer
+  );
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   const closeSidebar = () => {
     setIsSidebarOpen(false);
+  };
+
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
+  const logOutHandler = async () => {
+    try {
+      localStorage.removeItem("user");
+      await signOut(auth);
+      toast.success("Logged Out Successfully!");
+      navigate("/login")
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -41,26 +65,41 @@ const Header = () => {
           <button>Contact</button>
         </Link>
       </div>
+      <div className="profile-icon" onClick={toggleSidebar}>
+        {user ? (
+          <img src={user.photo} alt="Profile" />
+        ) : (
+          <FaUserAlt onClick={handleLoginClick} />
+        )}
+      </div>
       <div className="hamburg" onClick={toggleSidebar}>
         <FaBars size="1.8em" />
       </div>
       {isSidebarOpen && (
-        <div className="sidebar">
+        <div className="sidebar" style={{ transform: 'translateX(0)' }}>
           <div className="sidebar-content">
             <div className="cross" onClick={toggleSidebar}>
               <FaTimes />
             </div>
-            <Link to={"/explore"} onClick={closeSidebar}>Explore</Link>
-            <Link to={"/what-we-do"} onClick={closeSidebar}>What we do ?</Link>
-            <Link to={"/growth-results"} onClick={closeSidebar}>Growth Results</Link>
-            <Link to={"/case-studies"} onClick={closeSidebar}>Case Studies</Link>
-            <Link to={"/career"} onClick={closeSidebar}>Career</Link>
-            <Link to={"/"} onClick={closeSidebar}>
-              <FaGlobe /> English
+            <Link to={"/explore"} onClick={closeSidebar}>
+              Explore
+            </Link>
+            <Link to={"/what-we-do"} onClick={closeSidebar}>
+              What we do ?
+            </Link>
+            <Link to={"/growth-results"} onClick={closeSidebar}>
+              Growth Results
+            </Link>
+            <Link to={"/case-studies"} onClick={closeSidebar}>
+              Case Studies
+            </Link>
+            <Link to={"/career"} onClick={closeSidebar}>
+              Career
             </Link>
             <Link to={"/contact"} onClick={closeSidebar}>
               <button>Contact</button>
             </Link>
+            <button disabled={!user} onClick={logOutHandler} className="logout">Log Out</button>
           </div>
         </div>
       )}
