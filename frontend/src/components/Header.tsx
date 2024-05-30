@@ -9,7 +9,7 @@ import { auth } from "../firebase";
 import toast from "react-hot-toast";
 
 const Header = () => {
-  const { user, loading } = useSelector(
+  const { user } = useSelector(
     (state: { userReducer: userReducerInitialState }) => state.userReducer
   );
   const navigate = useNavigate();

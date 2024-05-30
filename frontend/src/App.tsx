@@ -1,18 +1,18 @@
+import axios from "axios";
+import { onAuthStateChanged } from "firebase/auth";
 import { Suspense, lazy, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Loader from "./components/Loader";
-import Footer from "./components/Footer";
-import RegisterFingerprint from "./pages/RegisterFingerprint";
-import LoginFingerprint from "./pages/LoginFingerprint";
-import { useDispatch, useSelector } from "react-redux";
-import { UserResponse, userReducerInitialState } from "./types/reducerTypes";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "./firebase";
-import { userExist, userNotExist } from "./redux/reducers/userReducer";
-import axios from "axios";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { auth } from "./firebase";
+import LoginFingerprint from "./pages/LoginFingerprint";
+import RegisterFingerprint from "./pages/RegisterFingerprint";
+import { userExist, userNotExist } from "./redux/reducers/userReducer";
+import { UserResponse, userReducerInitialState } from "./types/reducerTypes";
 
 //lazy loading
 const Home = lazy(() => import("./pages/Home"));
