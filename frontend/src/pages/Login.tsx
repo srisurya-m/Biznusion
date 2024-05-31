@@ -31,12 +31,14 @@ const Login = () => {
         }
       );
 
-      if (response.data) {
+      if (response.data.success) {
+        dispatch(userExist(response.data.user))
+        const userData = response.data.user;
+        localStorage.setItem("user", JSON.stringify(userData));
         toast.success(response.data.message);
-        if (!response.data.user.registrationChallenge) {
+        if (!response.data.user.credentialPublicKey) {
           navigate(`/${user.uid}`);
         }
-        navigate("/");
       } else {
         toast.error(response.data.message);
       }
@@ -58,18 +60,21 @@ const Login = () => {
         }
       );
 
-      if (response.data) {
+      if (response.data.success) {
         toast.success(response.data.message);
         setUsername("");
         setEmail("");
         const userData = response.data.user;
         dispatch(userExist(userData)); // Update user state
         localStorage.setItem("user", JSON.stringify(userData));
-        if (!response.data.user.registrationChallenge) {
+        if (!response.data.user.credentialPublicKey) {
+          console.log("hi credentail")
           navigate(`/${response.data.user._id}`);
         }
       } else {
         toast.error(response.data.message);
+        setUsername("");
+        setEmail("");
       }
     } catch (error) {
       toast.error("SignIn failed");

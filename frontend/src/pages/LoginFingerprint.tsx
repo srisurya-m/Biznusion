@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { userExist } from "../redux/reducers/userReducer";
 
 const LoginFingerprint = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
   const loginChallengeHandler = async () => {
@@ -17,8 +17,8 @@ const LoginFingerprint = () => {
         `${import.meta.env.VITE_SERVER}/api/v1/user/login-challenge`,
         { username }
       );
-      if(!response.data.success){
-         toast.error(`${response.data.message}`)
+      if (!response.data.success) {
+        toast.error(`${response.data.message}`);
       }
       if (response.data.success) {
         const options = response.data.options;
@@ -30,11 +30,15 @@ const LoginFingerprint = () => {
             username,
           }
         );
-        const userData = loginResponse.data.user;
-        dispatch(userExist(userData)); // Update user state
-        localStorage.setItem('user', JSON.stringify(userData));
-        toast.success(`${loginResponse.data.message}`);
-        navigate("/");
+        if (loginResponse.data.success) {
+          const userData = loginResponse.data.user;
+          dispatch(userExist(userData)); // Update user state
+          localStorage.setItem("user", JSON.stringify(userData));
+          toast.success(`${loginResponse.data.message}`);
+          navigate("/");
+        } else {
+          toast.error(`${loginResponse.data.message}`);
+        }
       }
     } catch (error) {
       console.log(error);
@@ -55,7 +59,7 @@ const LoginFingerprint = () => {
         </div>
         <div className="div-buttons">
           <button onClick={loginChallengeHandler}>
-          <IoIosFingerPrint />
+            <IoIosFingerPrint />
             <span>Login</span>
           </button>
         </div>

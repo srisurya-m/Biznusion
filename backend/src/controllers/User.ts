@@ -15,9 +15,16 @@ export const newUser = async (
   next: NextFunction
 ) => {
   try {
-    const { username, email, photo, _id, registrationChallenge } = req.body;
+    const { username, email, photo, _id } = req.body;
     let user = await User.findOne({ email });
     if (user) {
+      if(user.username !== username){
+        return res.status(200).json({
+          success:false,
+          message: "Invalid credentials or maybe you used different method to signIn"
+        })
+      }
+
       return res.status(200).json({
         success: true,
         message: `Welcome ${user.username}`,
@@ -33,7 +40,6 @@ export const newUser = async (
       email,
       photo,
       _id: _id || new mongoose.Types.ObjectId(),
-      registrationChallenge,
     });
 
     return res.status(201).json({
@@ -58,7 +64,7 @@ export const registerChallengeUser = async (req: Request, res: Response) => {
         message: "User doesn't exist",
       });
 
-      if(user.registrationChallenge){
+      if(user.credentialPublicKey){
         return res.status(200).json({
           success: true,
           message: "User already exists",
@@ -194,7 +200,7 @@ export const loginVerifyUser = async (req: Request, res: Response) => {
         credentialPublicKey
       }
     });
-    if(!result.verified) return res.status(404).json({
+    if(!result.verified) return res.status(200).json({
         success:false,
         message:"We are not able to authenticate"
     })

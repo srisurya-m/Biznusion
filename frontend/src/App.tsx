@@ -3,7 +3,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { Suspense, lazy, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useNavigate } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Loader from "./components/Loader";
@@ -32,23 +32,42 @@ function App() {
     (state: { userReducer: userReducerInitialState }) => state.userReducer
   );
   useEffect(() => {
-   const localUser = localStorage.getItem('user');
-    if (localUser) {
-      const user = JSON.parse(localUser);
-      dispatch(userExist(user));
-    } else {
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          const { data }: { data: UserResponse } = await axios.get(
-            `${import.meta.env.VITE_SERVER}/api/v1/user/${user.uid}`
-          );
-          dispatch(userExist(data.user));
-        } else {
-          dispatch(userNotExist());
+    const checkAuthState = async () => {
+      const localUser = localStorage.getItem('user');
+      if (localUser) {
+        try {
+          const user = JSON.parse(localUser);
+          dispatch(userExist(user));
+        } catch (error) {
+          console.error('Error parsing local user:', error);
+          localStorage.removeItem('user');
         }
-      });
-    }
-  }, []);
+
+      } else {
+        onAuthStateChanged(auth, async (user) => {
+          if (user) {
+            try {
+              const { data }: { data: UserResponse } = await axios.get(
+                `${import.meta.env.VITE_SERVER}/api/v1/user/${user.uid}`
+              );
+              dispatch(userExist(data.user));
+              localStorage.setItem('user', JSON.stringify(data.user));
+            } catch (error) {
+              console.error('Error fetching user:', error);
+              dispatch(userNotExist());
+              localStorage.removeItem('user');
+            }
+          } else {
+            dispatch(userNotExist());
+            localStorage.removeItem('user');
+          }
+        });
+      }
+    };
+  
+    checkAuthState();
+  }, [dispatch]);
+  
   return (
     <>
       <Router>
@@ -64,7 +83,7 @@ function App() {
             <Route path="/form-web-dev" element={<Webdev />} />
             <Route path="/form-data-analyst" element={<DataAnalyst />} />
             <Route path="/login" element={
-              <ProtectedRoute isAuthenticated={user ? false : true}>
+              <ProtectedRoute isAuthenticated={user ? false : true}  user={user ? user : undefined}>
                 <Login />
               </ProtectedRoute>
             } />

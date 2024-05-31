@@ -2,9 +2,12 @@ import { startRegistration } from "@simplewebauthn/browser";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { FaUserAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { userExist } from "../redux/reducers/userReducer";
 
 const RegisterFingerprint = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const registerChallengeHandler = async () => {
@@ -15,16 +18,20 @@ const RegisterFingerprint = () => {
       if (!response.data.user) {
         const options = response.data.options;
         const registrationResult = await startRegistration(options);
-        await axios.post(
+        const verificationResponse = await axios.post(
           `${import.meta.env.VITE_SERVER}/api/v1/user/register-verify/${id}`,
           {
             cred: registrationResult,
           }
         );
-        navigate("/login");
+        // console.log(verificationResponse.data.key)
+        dispatch(userExist(verificationResponse.data.key));
+        localStorage.setItem("user", JSON.stringify(verificationResponse.data.key));
+        navigate("/");
+
       }
       toast.success(`${response.data.message}`)
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
