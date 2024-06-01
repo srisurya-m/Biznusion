@@ -25,6 +25,9 @@ export const newUser = async (
             "Invalid credentials or maybe you used different method to signIn",
         });
       }
+      if(!user.photo){
+        user.photo = process.env.DEFAULT_PHOTO!
+      }
       if (user.photo === process.env.DEFAULT_PHOTO) {
         user.photo = photo;
         user = await User.findOneAndUpdate({ email }, user, { new: true });
