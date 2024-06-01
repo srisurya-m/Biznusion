@@ -32,12 +32,16 @@ const Login = () => {
       );
 
       if (response.data.success) {
-        dispatch(userExist(response.data.user))
+        dispatch(userExist(response.data.user));
         const userData = response.data.user;
         localStorage.setItem("user", JSON.stringify(userData));
         toast.success(response.data.message);
         if (!response.data.user.credentialPublicKey) {
-          navigate(`/${user.uid}`);
+          if (response.data.user._id !== user.uid) {
+            navigate(`/login/${response.data.user._id}`);
+          } else {
+            navigate(`/login/${user.uid}`);
+          }
         }
       } else {
         toast.error(response.data.message);
@@ -50,12 +54,12 @@ const Login = () => {
 
   const loginHandler = async () => {
     try {
+      const trimmedUsername = username.trim(); // to remove additional white spaces
       const response = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/v1/user/new`,
         {
-          username,
-          photo:
-            "https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png",
+          username: trimmedUsername,
+          photo: import.meta.env.VITE_DEFAULT_PHOTO,
           email,
         }
       );
@@ -68,8 +72,7 @@ const Login = () => {
         dispatch(userExist(userData)); // Update user state
         localStorage.setItem("user", JSON.stringify(userData));
         if (!response.data.user.credentialPublicKey) {
-          console.log("hi credentail")
-          navigate(`/${response.data.user._id}`);
+          navigate(`/login/${response.data.user._id}`);
         }
       } else {
         toast.error(response.data.message);
@@ -83,7 +86,7 @@ const Login = () => {
   };
 
   const loginWithFingerHandler = async () => {
-    navigate("/fingerprint");
+    navigate("/login/fingerprint");
   };
 
   return (

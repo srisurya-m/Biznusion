@@ -13,9 +13,10 @@ const LoginFingerprint = () => {
   const navigate = useNavigate();
   const loginChallengeHandler = async () => {
     try {
+      const trimmedUsername = username.trim(); // to remove additional white spaces
       const response = await axios.post(
         `${import.meta.env.VITE_SERVER}/api/v1/user/login-challenge`,
-        { username }
+        { username: trimmedUsername }
       );
       if (!response.data.success) {
         toast.error(`${response.data.message}`);

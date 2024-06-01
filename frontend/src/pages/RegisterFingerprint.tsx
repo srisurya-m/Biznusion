@@ -24,13 +24,14 @@ const RegisterFingerprint = () => {
             cred: registrationResult,
           }
         );
-        // console.log(verificationResponse.data.key)
         dispatch(userExist(verificationResponse.data.key));
-        localStorage.setItem("user", JSON.stringify(verificationResponse.data.key));
+        localStorage.setItem(
+          "user",
+          JSON.stringify(verificationResponse.data.key)
+        );
         navigate("/");
-
       }
-      toast.success(`${response.data.message}`)
+      toast.success(`${response.data.message}`);
       navigate("/");
     } catch (error) {
       console.log(error);

@@ -18,16 +18,20 @@ export const newUser = async (
     const { username, email, photo, _id } = req.body;
     let user = await User.findOne({ email });
     if (user) {
-      if(user.username !== username){
+      if (user.username !== username) {
         return res.status(200).json({
-          success:false,
-          message: "Invalid credentials or maybe you used different method to signIn"
-        })
+          success: false,
+          message:
+            "Invalid credentials or maybe you used different method to signIn",
+        });
       }
-
+      if (user.photo === process.env.DEFAULT_PHOTO) {
+        user.photo = photo;
+        user = await User.findOneAndUpdate({ email }, user, { new: true });
+      }
       return res.status(200).json({
         success: true,
-        message: `Welcome ${user.username}`,
+        message: `Welcome ${user?.username}`,
         user,
       });
     }
@@ -64,13 +68,13 @@ export const registerChallengeUser = async (req: Request, res: Response) => {
         message: "User doesn't exist",
       });
 
-      if(user.credentialPublicKey){
-        return res.status(200).json({
-          success: true,
-          message: "User already exists",
-          user
-        });
-      }
+    if (user.credentialPublicKey) {
+      return res.status(200).json({
+        success: true,
+        message: "User already exists",
+        user,
+      });
+    }
 
     const challengePayload = await generateRegistrationOptions({
       rpID: process.env.rpID!,
@@ -78,11 +82,13 @@ export const registerChallengeUser = async (req: Request, res: Response) => {
       userName: user.username,
     });
     user.registrationChallenge = challengePayload.challenge;
-    const userChallenge = await User.findByIdAndUpdate(userId, user, { new: true });
+    const userChallenge = await User.findByIdAndUpdate(userId, user, {
+      new: true,
+    });
 
     return res.status(200).json({
       success: true,
-      message: "Challenge created",
+      message: "Fingerprint Registered",
       userChallenge,
       options: challengePayload,
     });
@@ -134,10 +140,7 @@ export const registerVerifyUser = async (req: Request, res: Response) => {
   }
 };
 
-export const loginUser = async (
-  req: Request,
-  res: Response
-) => {
+export const loginUser = async (req: Request, res: Response) => {
   try {
     const { username } = req.body;
     const user = await User.findOne({ username });
@@ -150,9 +153,9 @@ export const loginUser = async (
     const options = await generateAuthenticationOptions({
       rpID: process.env.rpID!,
     });
-    if(user){
-      user.loginChallenge = options.challenge
-      await User.findOneAndUpdate({username},user)
+    if (user) {
+      user.loginChallenge = options.challenge;
+      await User.findOneAndUpdate({ username }, user);
       return res.status(201).json({
         success: true,
         message: "login challenge created successfully",
@@ -168,15 +171,15 @@ export const loginUser = async (
   }
 };
 
-
 export const loginVerifyUser = async (req: Request, res: Response) => {
   try {
     const { username, cred } = req.body;
-    const user = await User.findOne({ username });
+    const trimmedUsername = username.trim();
+    const user = await User.findOne({ username: trimmedUsername });
     if (!user) {
       return res.status(200).json({
         success: true,
-        message: "pls register first",
+        message: "Please register first",
       });
     }
     const loginChallenge = user?.loginChallenge;
@@ -186,7 +189,9 @@ export const loginVerifyUser = async (req: Request, res: Response) => {
         message: "Login challenge wasn't found",
       });
     }
-    const credentialPublicKey = Uint8Array.from(Buffer.from(user!.credentialPublicKey, 'base64'));
+    const credentialPublicKey = Uint8Array.from(
+      Buffer.from(user!.credentialPublicKey, "base64")
+    );
     const credentialID = user!.credentialID;
     const counter = user!.counter;
     const result = await verifyAuthenticationResponse({
@@ -197,34 +202,38 @@ export const loginVerifyUser = async (req: Request, res: Response) => {
       authenticator: {
         credentialID,
         counter,
-        credentialPublicKey
-      }
+        credentialPublicKey,
+      },
     });
-    if(!result.verified) return res.status(200).json({
-        success:false,
-        message:"We are not able to authenticate"
-    })
+    if (!result.verified)
+      return res.status(200).json({
+        success: false,
+        message: "We are not able to authenticate",
+      });
     return res.status(201).json({
       success: true,
       message: "login  successfully",
-      user
+      user,
     });
   } catch (error) {
     console.log(error);
   }
 };
 
-
-export const getUser = async (req:Request, res:Response, next:NextFunction) => {
+export const getUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
-  const user = await User.findById(id);
-  if (!user) return next(new ErrorHandler("Invalid Id", 400));
-  return res.status(200).json({
-    success: true,
-    user,
-  });
+    const user = await User.findById(id);
+    if (!user) return next(new ErrorHandler("Invalid Id", 400));
+    return res.status(200).json({
+      success: true,
+      user,
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };

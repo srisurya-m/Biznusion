@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { FaBars, FaGlobe, FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -62,23 +62,28 @@ const Header = () => {
         <Link to={"/growth-results"}>Growth Results</Link>
         <Link to={"/case-studies"}>Case Studies</Link>
         <Link to={"/career"}>Career</Link>
-        <Link to={"/"}>
-          <FaGlobe /> English
-        </Link>
         <Link to={"/contact"}>
           <button>Contact</button>
         </Link>
       </div>
       <div className="profile-icon" onClick={toggleSidebar}>
         {user ? (
-          <img src={user.photo} alt="Profile" />
+          <img src={user.photo} alt="Profile" style={{ marginTop: "8.5px" }} />
         ) : (
-          <FiLogIn  onClick={handleLoginClick}  style={{width:"30px",height:"50px", color:"white"}}/>
+          <FiLogIn
+            onClick={handleLoginClick}
+            style={{
+              width: "30px",
+              height: "50px",
+              color: "white",
+              marginTop: "6.5px",
+            }}
+          />
         )}
       </div>
-      <div className="hamburg" onClick={toggleSidebar}>
+      {/* <div className="hamburg" onClick={toggleSidebar}>
         <FaBars size="1.8em" />
-      </div>
+      </div> */}
       {isSidebarOpen && (
         <div className="sidebar" style={{ transform: "translateX(0)" }}>
           <div className="sidebar-content">
@@ -103,9 +108,19 @@ const Header = () => {
             <Link to={"/contact"} onClick={closeSidebar}>
               <button>Contact</button>
             </Link>
-            <button disabled={!user} onClick={logOutHandler} className="logout">
-              Log Out
-            </button>
+            {user ? (
+              <Link to={""}>
+                <button
+                  disabled={!user}
+                  onClick={logOutHandler}
+                  className="logout"
+                >
+                  Log Out
+                </button>
+              </Link>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       )}
