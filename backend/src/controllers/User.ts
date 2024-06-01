@@ -25,15 +25,6 @@ export const newUser = async (
             "Invalid credentials or maybe you used different method to signIn",
         });
       }
-      if(!photo){
-        const defaultPhoto = process.env.DEFAULT_PHOTO!;
-        user = await User.create({
-          username,
-          email,
-          photo:defaultPhoto,
-          _id: _id || new mongoose.Types.ObjectId(),
-        });
-      }
       if (user.photo === process.env.DEFAULT_PHOTO) {
         user.photo = photo;
         user = await User.findOneAndUpdate({ email }, user, { new: true });
@@ -47,6 +38,16 @@ export const newUser = async (
 
     if (!username || !email)
       return next(new ErrorHandler("Please add all fields", 400));
+
+    if(!photo){
+      const defaultPhoto = process.env.DEFAULT_PHOTO!;
+      user = await User.create({
+        username,
+        email,
+        photo:defaultPhoto,
+        _id: _id || new mongoose.Types.ObjectId(),
+      });
+    }
 
     user = await User.create({
       username,
