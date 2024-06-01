@@ -25,8 +25,14 @@ export const newUser = async (
             "Invalid credentials or maybe you used different method to signIn",
         });
       }
-      if(!user.photo){
-        user.photo = process.env.DEFAULT_PHOTO!
+      if(!photo){
+        const defaultPhoto = process.env.DEFAULT_PHOTO!;
+        user = await User.create({
+          username,
+          email,
+          photo:defaultPhoto,
+          _id: _id || new mongoose.Types.ObjectId(),
+        });
       }
       if (user.photo === process.env.DEFAULT_PHOTO) {
         user.photo = photo;
