@@ -91,6 +91,15 @@
       width: calc(100% - 20px); // Adjust width to fit 1 card per row on mobile
     }
 
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+
+      .card-hover {
+        opacity: 1;
+      }
+    }
+
     img {
       width: 100%;
       height: auto;
@@ -144,6 +153,7 @@
         padding: 10px 20px;
         cursor: pointer;
         border-radius: 4px;
+        transition: background 0.3s ease, transform 0.3s ease;
       }
     }
 
@@ -154,6 +164,11 @@
         opacity: 1;
       }
     }
+
+    &:active {
+      background: #ccac00;
+      transform: scale(0.9);
+    }
   }
 }
 
@@ -163,6 +178,7 @@
   font-weight: bold;
   text-align: center;
   margin-top: 20px;
+  height: 50vh;
   color: #ffffff;
 }
 
@@ -170,6 +186,7 @@
   font-size: 2.5rem;
   font-family: "Cursive", Georgia, "Times New Roman", Times, serif !important;
   text-align: center;
+  height: 35vh;
   margin-top: 10px;
   color: #ffffff;
 }
@@ -194,8 +211,10 @@
     color: #fff;
     padding: 10px;
     border-radius: 4px 0 0 4px;
+    transition: border 0.3s ease;
     &:focus {
       outline: none;
+      border: 2px solid gold;
     }
   }
   > button {
@@ -210,6 +229,11 @@
     transition: background 0.2s ease;
     &:hover {
       background-color: gold;
+      transform: scale(1.1);
+    }
+    &:active {
+      background-color: #ccac00;
+      transform: scale(0.9);
     }
   }
 }
@@ -234,11 +258,16 @@
     padding: 4px 12px;
     margin: 5px;
     border-radius: 50px;
-    transition: 0.2s ease;
+    transition: background 0.2s ease, transform 0.2s ease;
     &:hover {
       background-color: #fff;
       color: black;
+      transform: scale(1.1);
       cursor: pointer;
+    }
+    &:active {
+      background-color: #ccc;
+      transform: scale(0.9);
     }
     @include breakpoint(768px) {
       padding: 3px 10px;
@@ -274,6 +303,10 @@
       img {
         width: 100%;
         height: auto;
+        transition: transform 0.3s ease;
+      }
+      &:hover img {
+        transform: scale(1.1); /* Slight zoom effect on hover */
       }
     }
 
@@ -322,6 +355,14 @@
   position: relative;
   color: white;
   text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out; /* Smooth transitions */
+}
+
+.join.animate {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .join::before {
@@ -366,4 +407,36 @@
 .join button:active {
   background-color: #3c13a3; /* Even darker on click */
   transform: scale(0.95); /* Slightly smaller on click */
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-350px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(300px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

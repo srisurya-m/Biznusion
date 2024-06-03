@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,24 +11,27 @@ import cardImage4 from "../assets/cardImage-4.webp";
 import cardImage5 from "../assets/cardImage-5.webp";
 import cardImage6 from "../assets/cardImage-6.webp";
 import cardImage7 from "../assets/cardImage-7.webp";
-import image1 from "../assets/home-bg-1.png";
-import image2 from "../assets/home-bg-2.png";
-import image3 from "../assets/home-bg-3.png";
+import clientImage1 from "../assets/client-image-1.jpg";
+import clientImage2 from "../assets/client-image-2.jpg";
+import clientImage3 from "../assets/client-image-3.jpg";
+import image1 from "../assets/home-bg-1.jpeg";
+import image2 from "../assets/home-bg-2.jpg";
+import image3 from "../assets/home-bg-3.jpg";
 
 const carouselData = [
   {
-    image: image1,
-    heading: "Heading 1",
+    image: clientImage1,
+    heading: "We don't just code, we sculpt the digital tomorrow.",
     description: "Description for image 1. <a href='#'>Read more</a>",
   },
   {
-    image: image2,
-    heading: "Heading 2",
+    image: clientImage2,
+    heading: "Empowering progress, shaping the digital landscape.",
     description: "Description for image 2. <a href='#'>Read more</a>",
   },
   {
-    image: image3,
-    heading: "Heading 3",
+    image: clientImage3,
+    heading: "Where innovation meets possibility: Crafting the Digital Future.",
     description: "Description for image 3. <a href='#'>Read more</a>",
   },
 ];
@@ -89,6 +92,7 @@ const cardData = [
 
 const Home = () => {
   const [isAnimated, setIsAnimated] = useState(false);
+  const joinRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -97,6 +101,33 @@ const Home = () => {
 
     return () => {
       clearTimeout(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          } else {
+            entry.target.classList.remove("animate");
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    if (joinRef.current) {
+      observer.observe(joinRef.current);
+    }
+
+    return () => {
+      if (joinRef.current) {
+        observer.unobserve(joinRef.current);
+      }
     };
   }, []);
 
@@ -115,11 +146,11 @@ const Home = () => {
   const sliderSettings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 1500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 6000,
   };
 
   return (
@@ -170,14 +201,18 @@ const Home = () => {
         ))}
       </div>
 
-      <div className="value-text">360° value</div>
-      <div className="sub-text">
-        Every day, we embrace change and create value for all our stakeholders,
-        in every part of the world.
+      <div className="text-container">
+        <div className="value-text">
+          360° value
+        </div>
+        <div className="sub-text">
+          Every day, we embrace change and create value for all our stakeholders,
+          in every part of the world.
+        </div>
       </div>
 
       <div className="carousel-with-content">
-        <h2>Our Clients</h2>
+        <h2>Crafting the Digital Future</h2>
         <Slider {...sliderSettings}>
           {carouselData.map((item, index) => (
             <div className="carousel-item" key={index}>
@@ -186,14 +221,13 @@ const Home = () => {
               </section>
               <section className="right">
                 <h3>{item.heading}</h3>
-                <p dangerouslySetInnerHTML={{ __html: item.description }}></p>
               </section>
             </div>
           ))}
         </Slider>
       </div>
 
-      <div className="join">
+      <div className="join" ref={joinRef}>
         <h1>Want to Join Us?</h1>
         <button>Let's Connect!</button>
       </div>
