@@ -3,12 +3,13 @@ import { Navigate, Outlet } from "react-router-dom";
 import { User } from "../types/types";
 
 interface props {
-  isAuthenticated: boolean;
+  isAuthenticated?: boolean;
   children?: ReactElement;
   adminRoute?: boolean;
   isAdmin?: boolean;
   redirect?: string;
   user?: User;
+  userRoute?: boolean;
 }
 
 const ProtectedRoute = ({
@@ -18,8 +19,9 @@ const ProtectedRoute = ({
   adminRoute,
   isAdmin,
   redirect = "/",
+  userRoute,
 }: props) => {
-  if (!isAuthenticated) {
+  if (isAuthenticated === false) {
     if (user?.credentialPublicKey) {
       return <Navigate to={redirect} />;
     }
@@ -32,6 +34,11 @@ const ProtectedRoute = ({
     }
   }
   if (adminRoute && !isAdmin) return <Navigate to={redirect} />;
+
+  if (userRoute && !user) {
+    return <Navigate to={redirect} />;
+  }
+
   return children ? children : <Outlet />;
 };
 

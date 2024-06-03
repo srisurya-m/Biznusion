@@ -90,6 +90,13 @@ const Header = () => {
             <div className="cross" onClick={toggleSidebar}>
               <FaTimes />
             </div>
+            {user ? (
+              <Link to={`/my-profile/${user._id}`} onClick={closeSidebar}>
+                My Profile
+              </Link>
+            ) : (
+              <></>
+            )}
             <Link to={"/explore"} onClick={closeSidebar}>
               Explore
             </Link>

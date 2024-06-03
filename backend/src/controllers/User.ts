@@ -8,6 +8,8 @@ import {
   verifyAuthenticationResponse,
   verifyRegistrationResponse,
 } from "@simplewebauthn/server";
+import { existsSync, rm, unlink } from "fs";
+import path from "path";
 
 export const newUser = async (
   req: Request,
@@ -39,12 +41,12 @@ export const newUser = async (
     if (!username || !email)
       return next(new ErrorHandler("Please add all fields", 400));
 
-    if(!photo){
+    if (!photo) {
       const defaultPhoto = process.env.DEFAULT_PHOTO!;
       user = await User.create({
         username,
         email,
-        photo:defaultPhoto,
+        photo: defaultPhoto,
         _id: _id || new mongoose.Types.ObjectId(),
       });
     }
@@ -242,6 +244,52 @@ export const getUser = async (
     return res.status(200).json({
       success: true,
       user,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { username, email } = req.body;
+    const id = req.params.id;
+    const photo = req.file;
+    const isObjectId = mongoose.Types.ObjectId.isValid(id);
+    const userId = isObjectId ? new mongoose.Types.ObjectId(id) : id;
+    let user = await User.findById(userId);
+    if (!user) return next(new ErrorHandler("User not Found", 400));
+
+    if (photo) {
+      const filename = path.basename(user.photo);
+      const filePath = path.join("uploads", "users", filename);
+      if (existsSync(filePath)) {
+        // Delete the old photo file
+        rm(filePath, (err) => {
+          if (err) {
+            console.log("Error deleting old photo:", err);
+          } else {
+            console.log("Old photo deleted successfully");
+          }
+        });
+      } else {
+        console.log("Old photo does not exist:", filePath);
+      }
+      user.photo = `${process.env.VITE_SERVER}/${photo.path}`;
+    }
+
+    user.username = username;
+    user.email = email;
+    const updatedUser = await User.findByIdAndUpdate(userId, user, {
+      new: true,
+    });
+    return res.status(200).json({
+      success: true,
+      updatedUser,
     });
   } catch (error) {
     console.log(error);

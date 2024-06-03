@@ -24,6 +24,7 @@ const ContactUs = lazy(() => import("./pages/ContactUs"));
 const Login = lazy(() => import("./pages/Login"));
 const LoginFingerprint = lazy(() => import("./pages/LoginFingerprint"));
 const RegisterFingerprint = lazy(() => import("./pages/RegisterFingerprint"));
+const MyProfile = lazy(() => import("./pages/MyProfile"));
 
 function App() {
   const dispatch = useDispatch();
@@ -110,6 +111,14 @@ function App() {
                   user={user ? user : undefined}
                 >
                   <LoginFingerprint />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/my-profile/:id"
+              element={
+                <ProtectedRoute user={user ? user : undefined} userRoute={true}>
+                  <MyProfile />
                 </ProtectedRoute>
               }
             />
