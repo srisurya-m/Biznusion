@@ -2,8 +2,14 @@ import { ChangeEvent, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { ContactFormType } from "../types/types";
+import { AiOutlineNotification } from "react-icons/ai";
 
 const ContactUs = () => {
+  const handleBookSlot = () => {
+    // Handle booking slot functionality here
+    alert("One-to-one video call booking feature is coming soon!");
+  };
+
   const [formData, setFormData] = useState<ContactFormType>({
     name: "",
     email: "",
@@ -35,43 +41,55 @@ const ContactUs = () => {
   };
 
   return (
-    <div>
-      <div className="main">
-        <div className="contact-center-form">
-          <h1 style={{ color: "white" }}>Contact Us</h1>
-          <form className="form" onSubmit={submitHandler}>
-            <label>Name:</label>
+    <>
+      <div className="contact-us-main">
+        <div className="contact-us-center-form">
+          <h1 className="contact-us-title">Contact Us</h1>
+          <form className="contact-us-form" onSubmit={submitHandler}>
+            <label className="contact-us-label">Name:</label>
             <input
+              className="contact-us-input"
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               required
             />
-            <label>Email:</label>
+            <label className="contact-us-label">Email:</label>
             <input
+              className="contact-us-input"
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
             />
-            <label>Message:</label>
+            <label className="contact-us-label">Message:</label>
             <textarea
-              style={{ height: "10em", padding: "10px" }}
+              className="contact-us-textarea"
               name="message"
               value={formData.message}
               onChange={handleChange}
               required
             />
-
-            <button style={{ marginTop: "20px"}} type="submit">
+            <button className="contact-us-button" type="submit">
               Submit
             </button>
           </form>
         </div>
       </div>
-    </div>
+      <div className="video-call-app">
+        <div className="notification-button-container">
+          <AiOutlineNotification
+            className="notification-icon"
+            onClick={handleBookSlot}
+          />
+          <button className="notification-button" onClick={handleBookSlot}>
+            One-to-One Video Call Coming Soon
+          </button>
+        </div>
+      </div>
+    </>
   );
 };
 
