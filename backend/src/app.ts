@@ -45,7 +45,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "*", // Adjust this to match your client app's URL if needed
+    origin: "https://biznusion-swart.vercel.app", // Adjust this to match your client app's URL if needed
     methods: ["GET", "POST"],
   },
   path: "/socket.io",
