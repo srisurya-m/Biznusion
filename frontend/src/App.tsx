@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { auth } from "./firebase";
 import { userExist, userNotExist } from "./redux/reducers/userReducer";
 import { UserResponse, userReducerInitialState } from "./types/reducerTypes";
+import Room from "./pages/video-call/Room";
 
 //lazy loading
 const Home = lazy(() => import("./pages/Home"));
@@ -25,6 +26,7 @@ const Login = lazy(() => import("./pages/Login"));
 const LoginFingerprint = lazy(() => import("./pages/LoginFingerprint"));
 const RegisterFingerprint = lazy(() => import("./pages/RegisterFingerprint"));
 const MyProfile = lazy(() => import("./pages/MyProfile"));
+const Lobby = lazy(() => import("./pages/video-call/Lobby"));
 
 function App() {
   const dispatch = useDispatch();
@@ -122,6 +124,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="/contact/video-call" element={<Lobby />} />
+            <Route path="/room/:roomId" element={<Room/>} />
           </Routes>
           <Toaster position="top-center" />
         </Suspense>

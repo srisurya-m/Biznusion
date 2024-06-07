@@ -3,11 +3,12 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { ContactFormType } from "../types/types";
 import { AiOutlineNotification } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const ContactUs = () => {
+  const navigate = useNavigate();
   const handleBookSlot = () => {
-    // Handle booking slot functionality here
-    alert("One-to-one video call booking feature is coming soon!");
+    alert("AI enabled Chat Bot, feature is coming soon!");
   };
 
   const [formData, setFormData] = useState<ContactFormType>({
@@ -15,6 +16,10 @@ const ContactUs = () => {
     email: "",
     message: "",
   });
+
+  const handleNavigateToVideoCall = () => {
+    navigate('/contact/video-call');
+  };
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -76,6 +81,10 @@ const ContactUs = () => {
               Submit
             </button>
           </form>
+          <label htmlFor="video-call-button" className="navigate-video-call-label"> Have Questions About Our Packages? Chat with an Expert!</label>
+          <button className="navigate-video-call-button" id="video-call-button" onClick={handleNavigateToVideoCall}>
+          Join a One-on-One Video Call
+          </button>
         </div>
       </div>
       <div className="video-call-app">
@@ -85,7 +94,7 @@ const ContactUs = () => {
             onClick={handleBookSlot}
           />
           <button className="notification-button" onClick={handleBookSlot}>
-            One-to-One Video Call Coming Soon
+            Chat Bot coming Soon!
           </button>
         </div>
       </div>

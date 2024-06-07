@@ -1,0 +1,139 @@
+.lobby-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  @include breakpoint(1024px){
+    width: 80%;
+    height: 70vh;
+  }
+  height: 100vh;
+  margin: auto;
+  justify-content: center;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  padding: 20px;
+  border-radius: 8px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.lobby-title {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: slideDown 1s ease-in-out;
+}
+
+.lobby-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+  opacity: 0;
+  animation: formFadeIn 1s ease-in-out forwards 1s;
+}
+
+.lobby-label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s;
+}
+
+.lobby-label:hover {
+  color: #3498db;
+}
+
+.lobby-input {
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: box-shadow 0.3s, transform 0.3s, background-color 0.3s;
+}
+
+.lobby-input:hover,
+.lobby-input:focus {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.lobby-button {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.lobby-button:hover {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  transform: translateY(-2px);
+}
+
+.lobby-button:active {
+  transform: translateY(1px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes formFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.lobby-select {
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: box-shadow 0.3s, transform 0.3s, background-color 0.3s;
+}
+
+.lobby-select:hover,
+.lobby-select:focus {
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.lobby-select:active {
+  transform: translateY(1px);
+}

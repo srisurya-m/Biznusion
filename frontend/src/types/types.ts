@@ -38,3 +38,28 @@ export type User={
   counter?:number;
   role?:string;
 }
+
+
+export interface UserJoinedPayload {
+  email: string;
+  id: string;
+}
+
+export interface IncomingCallPayload {
+  from: string;
+  offer: RTCSessionDescriptionInit;
+}
+
+export interface NegoNeededIncomingCallPayload {
+  from: string;
+  offer: RTCSessionDescriptionInit;
+}
+
+export interface CallAcceptedPayload {
+  from: string;
+  ans: RTCSessionDescriptionInit;
+}
+
+export interface NegoNeededFinalPayload {
+  ans: RTCSessionDescriptionInit;
+}

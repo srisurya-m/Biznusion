@@ -1,0 +1,70 @@
+.room-container {
+  display: flex;
+  margin-top: 40px;
+  color: white;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.video-container {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px; /* Adjust width as needed */
+  max-height: 1000px; /* Adjust width as needed */
+}
+
+.remote-video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 500px; /* Adjust height as needed */
+}
+
+.my-video-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 200px; /* Adjust width as needed */
+  height: 150px; /* Adjust height as needed */
+  border: 2px solid #fff;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.room-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.room-button:hover {
+  background-color: #0056b3;
+}
+
+.room-button.call-button {
+  background-color: #17a2b8;
+}
+
+.room-button.end-call-button {
+  background-color: #dc3545;
+}
