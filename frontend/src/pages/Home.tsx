@@ -95,12 +95,12 @@ const Home = () => {
   const [isAnimated, setIsAnimated] = useState(false);
   const joinRef = useRef(null);
 
-  const handleScheduleCall = ()=>{
-    navigate("/contact/schedule-call")
-  }
-  const handleJoinCall = ()=>{
-    navigate("/contact/video-call")
-  }
+  const handleScheduleCall = () => {
+    navigate("/contact/schedule-call");
+  };
+  const handleJoinCall = () => {
+    navigate("/contact/video-call");
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -136,6 +136,27 @@ const Home = () => {
       if (joinRef.current) {
         observer.unobserve(joinRef.current);
       }
+    };
+  }, []);
+
+  useEffect(() => {
+    const cards = document.querySelectorAll(".service-card");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+
+    return () => {
+      cards.forEach(card => observer.unobserve(card));
     };
   }, []);
 
@@ -186,7 +207,9 @@ const Home = () => {
             Our Experts
           </button>{" "}
           <span className="or">Or</span>
-          <button className="primary-button" onClick={handleJoinCall}>Join your Scheduled Call</button>
+          <button className="primary-button" onClick={handleJoinCall}>
+            Join your Scheduled Call
+          </button>
         </div>
 
         <div className={`options ${isAnimated ? "slide-down" : "slide-up"}`}>
@@ -195,6 +218,39 @@ const Home = () => {
           <button>Data science</button>
           <button>Case Studies</button>
           <button>Digital transformation</button>
+        </div>
+      </div>
+
+      <div className="services-section">
+        <h2>Our Services</h2>
+        <div className="service-cards">
+          <div className="service-card">
+            <h3>Business Transformation</h3>
+            <p>
+              We assist enterprises in driving sustainable growth through
+              innovative strategies and solutions tailored to their unique
+              challenges. Our expert team ensures a seamless transition and
+              continuous improvement for lasting success.
+            </p>
+          </div>
+          <div className="service-card">
+            <h3>Educational Transformation</h3>
+            <p>
+              Our services empower educational institutions by integrating
+              cutting-edge technologies and progressive methodologies. We strive
+              to enhance the learning experience, making education more
+              accessible, engaging, and effective for all stakeholders.
+            </p>
+          </div>
+          <div className="service-card">
+            <h3>Healthcare Transformation</h3>
+            <p>
+              We revolutionize healthcare delivery by leveraging advanced
+              technologies and patient-centered care models. Our solutions aim
+              to improve healthcare outcomes, streamline operations, and foster
+              a compassionate environment for patients and providers alike.
+            </p>
+          </div>
         </div>
       </div>
 
