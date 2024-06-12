@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { FaUserAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { userExist } from "../redux/reducers/userReducer";
+import { userExist } from "../../redux/reducers/userReducer";
 
 const RegisterFingerprint = () => {
   const dispatch = useDispatch();
