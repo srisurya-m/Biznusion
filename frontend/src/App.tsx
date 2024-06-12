@@ -11,7 +11,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { auth } from "./firebase";
 import { userExist, userNotExist } from "./redux/reducers/userReducer";
 import { UserResponse, userReducerInitialState } from "./types/reducerTypes";
-import Room from "./pages/video-call/Room";
 
 //lazy loading
 const Home = lazy(() => import("./pages/Home"));
@@ -22,11 +21,17 @@ const Career = lazy(() => import("./pages/Career"));
 const Webdev = lazy(() => import("./pages/forms/Webdev"));
 const DataAnalyst = lazy(() => import("./pages/forms/DataAnalyst"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
-const Login = lazy(() => import("./pages/Login"));
-const LoginFingerprint = lazy(() => import("./pages/LoginFingerprint"));
-const RegisterFingerprint = lazy(() => import("./pages/RegisterFingerprint"));
+const Login = lazy(() => import("./pages/authentication/Login"));
+const LoginFingerprint = lazy(
+  () => import("./pages/authentication/LoginFingerprint")
+);
+const RegisterFingerprint = lazy(
+  () => import("./pages/authentication/RegisterFingerprint")
+);
 const MyProfile = lazy(() => import("./pages/MyProfile"));
 const Lobby = lazy(() => import("./pages/video-call/Lobby"));
+const ScheduleCall = lazy(() => import("./pages/video-call/ScheduleCall"));
+const Room = lazy(() => import("./pages/video-call/Room"));
 
 function App() {
   const dispatch = useDispatch();
@@ -125,7 +130,8 @@ function App() {
               }
             />
             <Route path="/contact/video-call" element={<Lobby />} />
-            <Route path="/room/:roomId" element={<Room/>} />
+            <Route path="/contact/schedule-call" element={<ScheduleCall />} />
+            <Route path="/room/:roomId" element={<Room />} />
           </Routes>
           <Toaster position="top-center" />
         </Suspense>

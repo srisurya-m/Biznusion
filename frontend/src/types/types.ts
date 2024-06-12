@@ -63,3 +63,10 @@ export interface CallAcceptedPayload {
 export interface NegoNeededFinalPayload {
   ans: RTCSessionDescriptionInit;
 }
+
+export interface ScheduleCallFormData {
+  name: string;
+  email: string;
+  preferredDate: string;
+  preferredTime: string;
+}

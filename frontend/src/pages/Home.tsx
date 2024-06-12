@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { FaSearch } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -17,6 +16,7 @@ import clientImage3 from "../assets/client-image-3.jpg";
 import image1 from "../assets/home-bg-1.jpeg";
 import image2 from "../assets/home-bg-2.jpg";
 import image3 from "../assets/home-bg-3.jpg";
+import { useNavigate } from "react-router-dom";
 
 const carouselData = [
   {
@@ -91,8 +91,16 @@ const cardData = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
   const [isAnimated, setIsAnimated] = useState(false);
   const joinRef = useRef(null);
+
+  const handleScheduleCall = ()=>{
+    navigate("/contact/schedule-call")
+  }
+  const handleJoinCall = ()=>{
+    navigate("/contact/video-call")
+  }
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -170,12 +178,17 @@ const Home = () => {
         <h1 className={`${isAnimated ? "slide-down" : "slide-up"}`}>
           <Typewriter options={typewriterOptions} />
         </h1>
-        <div className={`search ${isAnimated ? "slide-down" : "slide-up"}`}>
-          <input type="text" placeholder="Search for our services..." />
-          <button>
-            <FaSearch />
-          </button>
+        <div
+          className={`call-to-action ${isAnimated ? "slide-down" : "slide-up"}`}
+        >
+          <button className="primary-button" onClick={handleScheduleCall}>
+            Schedule a <span className="highlight">FREE</span> Consultation with
+            Our Experts
+          </button>{" "}
+          <span className="or">Or</span>
+          <button className="primary-button" onClick={handleJoinCall}>Join your Scheduled Call</button>
         </div>
+
         <div className={`options ${isAnimated ? "slide-down" : "slide-up"}`}>
           <button>Business Analysis</button>
           <button>Consulting</button>
@@ -202,12 +215,10 @@ const Home = () => {
       </div>
 
       <div className="text-container">
-        <div className="value-text">
-          360° value
-        </div>
+        <div className="value-text">360° value</div>
         <div className="sub-text">
-          Every day, we embrace change and create value for all our stakeholders,
-          in every part of the world.
+          Every day, we embrace change and create value for all our
+          stakeholders, in every part of the world.
         </div>
       </div>
 

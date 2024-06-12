@@ -17,8 +17,8 @@ const ContactUs = () => {
     message: "",
   });
 
-  const handleNavigateToVideoCall = () => {
-    navigate('/contact/video-call');
+  const handleScheduleCall = () => {
+    navigate('/contact/schedule-call');
   };
 
   const handleChange = (
@@ -82,8 +82,8 @@ const ContactUs = () => {
             </button>
           </form>
           <label htmlFor="video-call-button" className="navigate-video-call-label"> Have Questions About Our Packages? Chat with an Expert!</label>
-          <button className="navigate-video-call-button" id="video-call-button" onClick={handleNavigateToVideoCall}>
-          Join a One-on-One Video Call
+          <button className="navigate-video-call-button" id="video-call-button" onClick={handleScheduleCall}>
+          Schedule a Call with Our Experts
           </button>
         </div>
       </div>

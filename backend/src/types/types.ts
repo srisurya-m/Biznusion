@@ -1,3 +1,5 @@
+import { Date } from "mongoose";
+
 export interface WebdevForm {
   name: string;
   phoneNumber: number;
@@ -15,12 +17,23 @@ export interface WebdevForm {
   portfolio: string;
   graduationYear: number;
   info: string;
-  dob: Date;
+  dob: string | number;
 }
-
 
 export interface ContactFormType {
   name: string;
   email: string;
   message: string;
+}
+
+export interface UserAppointmentType {
+  name: string;
+  email: string;
+  preferredDate: string;
+  preferredTime: string;
+}
+
+export interface UserJoinAppointmentType {
+  name: string;
+  email: string;
 }

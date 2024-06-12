@@ -1,41 +1,68 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSocket } from '../../context/SocketProvider';
+import { FormEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSocket } from "../../context/SocketProvider";
+import axios from "axios";
+import toast from "react-hot-toast";
+
+// 839572
 
 const Lobby = () => {
   const navigate = useNavigate();
   const socket = useSocket();
-  const [email, setEmail] = useState<string>('');
-  const [room, setRoom] = useState<string>('');
-  const [selectedRoom, setSelectedRoom] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("");
 
-  const handleRoomSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedRoom(e.target.value);
-    setRoom(e.target.value);
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    socket.emit("room:join", { email, room });
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_SERVER}/api/v1/contact-us/join-appointment`,
+        {
+          name,
+          email,
+        }
+      );
+      if (response.data.success) {
+        socket.emit("room:join", { email, room: "839572" });
+        toast.success(`${response.data.message}`);
+      } else {
+        toast.error(`${response.data.message}`);
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleJoinRoom = async (data : {email:string,room:string}) => {
-    const {room } =data
-    navigate(`/room/${room}`)
+  const handleJoinRoom = async () => {
+    navigate(`/room/${839572}`);
   };
 
   useEffect(() => {
     socket.on("room:join", handleJoinRoom);
-    return ()=>{
-        socket.off("room:join", handleJoinRoom)
-    }
-  }, [socket,handleJoinRoom]);
+    return () => {
+      socket.off("room:join", handleJoinRoom);
+    };
+  }, [socket, handleJoinRoom]);
 
   return (
     <div className="lobby-container">
       <h1 className="lobby-title">Join a Video Call</h1>
       <form className="lobby-form" onSubmit={handleSubmit}>
-        <label className="lobby-label" htmlFor="email">Email:</label>
+        <label className="lobby-label" htmlFor="email">
+          Name:
+        </label>
+        <input
+          className="lobby-input"
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <label className="lobby-label" htmlFor="email">
+          Email:
+        </label>
         <input
           className="lobby-input"
           type="email"
@@ -44,21 +71,6 @@ const Lobby = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <label className="lobby-label" htmlFor="roomName">Room:</label>
-        <select
-          className="lobby-select" // Added class for styling select
-          id="roomName"
-          value={selectedRoom}
-          onChange={handleRoomSelect}
-          required
-        >
-          <option value="" disabled>Select a Room</option>
-          <option value="48273">Business Analysis and Problems</option>
-          <option value="69184">Consulting</option>
-          <option value="35792">Big Data Analysis</option>
-          <option value="84061">Digital Marketing</option>
-          <option value="12345">Other Query</option>
-        </select>
         <button className="lobby-button">Join Room</button>
       </form>
     </div>

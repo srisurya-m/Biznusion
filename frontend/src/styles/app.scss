@@ -54,6 +54,7 @@ $color3: rgb(212, 215, 55);
 @import "myprofile";
 @import "lobby";
 @import "room";
+@import "scheduleCall";
 
 .header.visible {
   transform: translateY(0);
