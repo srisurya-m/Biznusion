@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { IoIosFingerPrint } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userExist } from "../redux/reducers/userReducer";
+import { userExist } from "../../redux/reducers/userReducer";
 
 const LoginFingerprint = () => {
   const dispatch = useDispatch();
