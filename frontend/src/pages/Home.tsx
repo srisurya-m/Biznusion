@@ -11,30 +11,9 @@ import cardImage4 from "../assets/cardImage-4.webp";
 import cardImage5 from "../assets/cardImage-5.webp";
 import cardImage6 from "../assets/cardImage-6.webp";
 import cardImage7 from "../assets/cardImage-7.webp";
-import clientImage1 from "../assets/client-image-1.jpg";
-import clientImage2 from "../assets/client-image-2.jpg";
-import clientImage3 from "../assets/client-image-3.jpg";
 import consultingImage from "../assets/working-model-consulting.jpg";
 import analysisImage from "../assets/working-model-analysis.jpg";
 import successImage from "../assets/working-model-success.jpg";
-
-const carouselData = [
-  {
-    image: clientImage1,
-    heading: "We don't just code, we sculpt the digital tomorrow.",
-    description: "Description for image 1. <a href='#'>Read more</a>",
-  },
-  {
-    image: clientImage2,
-    heading: "Empowering progress, shaping the digital landscape.",
-    description: "Description for image 2. <a href='#'>Read more</a>",
-  },
-  {
-    image: clientImage3,
-    heading: "Where innovation meets possibility: Crafting the Digital Future.",
-    description: "Description for image 3. <a href='#'>Read more</a>",
-  },
-];
 
 const cardData = [
   {
@@ -201,16 +180,6 @@ const Home = () => {
     loop: true,
     delay: 60, // optional, typing speed
     wrapperClassName: "typewriter-wrapper",
-  };
-
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 1500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 6000,
   };
 
   const serviceSliderSettings = {
