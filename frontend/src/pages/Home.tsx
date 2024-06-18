@@ -371,22 +371,6 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="carousel-with-content">
-        <h2>Crafting the Digital Future</h2>
-        <Slider {...sliderSettings}>
-          {carouselData.map((item, index) => (
-            <div className="carousel-item" key={index}>
-              <section className="left">
-                <img src={item.image} alt={`Carousel ${index + 1}`} />
-              </section>
-              <section className="right">
-                <h3>{item.heading}</h3>
-              </section>
-            </div>
-          ))}
-        </Slider>
-      </div>
-
       <div className="join" ref={joinRef}>
         <h1>Want to Join Us?</h1>
         <button>Let's Connect!</button>
