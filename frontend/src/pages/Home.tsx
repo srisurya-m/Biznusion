@@ -14,9 +14,6 @@ import cardImage7 from "../assets/cardImage-7.webp";
 import clientImage1 from "../assets/client-image-1.jpg";
 import clientImage2 from "../assets/client-image-2.jpg";
 import clientImage3 from "../assets/client-image-3.jpg";
-import image1 from "../assets/home-bg-1.jpeg";
-import image2 from "../assets/home-bg-2.jpg";
-import image3 from "../assets/home-bg-3.jpg";
 import consultingImage from "../assets/working-model-consulting.jpg";
 import analysisImage from "../assets/working-model-analysis.jpg";
 import successImage from "../assets/working-model-success.jpg";
@@ -167,28 +164,28 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const sections = document.querySelectorAll('.section-new');
+    const sections = document.querySelectorAll(".section-new");
     const options = {
       threshold: 0.1,
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add("visible");
         } else {
-          entry.target.classList.remove('visible');
+          entry.target.classList.remove("visible");
         }
       });
     }, options);
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       observer.observe(section);
     });
 
     // Clean up the observer on component unmount
     return () => {
-      sections.forEach(section => {
+      sections.forEach((section) => {
         observer.unobserve(section);
       });
     };
@@ -216,20 +213,29 @@ const Home = () => {
     autoplaySpeed: 6000,
   };
 
+  const serviceSliderSettings = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 1500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 6000,
+  };
+
+  const servicesList = [
+    { name: "Business Analysis", anchor: "#business-analysis" },
+    { name: "Data Science", anchor: "#data-science" },
+    { name: "Big Data Analysis", anchor: "#big-data-analysis" },
+    { name: "Consulting", anchor: "#consulting" },
+    { name: "Solving Business Problems", anchor: "#solving-business-problems" },
+    { name: "Digital Marketing", anchor: "#digital-marketing" },
+  ];
+
   return (
     <>
       <div className="homepage">
-        <Slider {...sliderSettings} className="background-slider">
-          <div>
-            <img src={image1} alt="Slide 1" />
-          </div>
-          <div>
-            <img src={image2} alt="Slide 2" />
-          </div>
-          <div>
-            <img src={image3} alt="Slide 3" />
-          </div>
-        </Slider>
         <h1 className={`${isAnimated ? "slide-down" : "slide-up"}`}>
           <Typewriter options={typewriterOptions} />
         </h1>
@@ -256,75 +262,87 @@ const Home = () => {
       </div>
 
       <div className="working-model-new">
-  <h2>Our Working Model</h2>
-  <div className="section-new">
-    <div className="card-content">
-      <h3>Consultation</h3>
-      <p>Tailored Guidance for Your Unique Needs</p>
-      <ul>
-        <li><strong>Initial Assessment:</strong> Understanding your business needs and objectives.</li>
-        <li><strong>Strategy Development:</strong> Crafting a customized plan to address your challenges.</li>
-        <li><strong>Ongoing Support:</strong> Continuous guidance and support to ensure you stay on track.</li>
-      </ul>
-      <img src={consultingImage} alt="Consultation Icon" className="card-icon" />
-    </div>
-  </div>
-  <div className="section-new">
-    <div className="card-content">
-      <h3>Analysis</h3>
-      <p>In-Depth Insights for Data-Driven Decisions</p>
-      <ul>
-        <li><strong>Data Collection:</strong> Gathering relevant data from various sources.</li>
-        <li><strong>Detailed Analysis:</strong> Using advanced tools to derive actionable insights.</li>
-        <li><strong>Reporting:</strong> Providing clear and concise reports to aid decision-making.</li>
-      </ul>
-      <img src={analysisImage} alt="Analysis Icon" className="card-icon" />
-    </div>
-  </div>
-  <div className="section-new">
-    <div className="card-content">
-      <h3>Growth & Success</h3>
-      <p>Achieving Excellence Through Continuous Improvement</p>
-      <ul>
-        <li><strong>Implementation:</strong> Assisting you in executing the developed strategies.</li>
-        <li><strong>Performance Monitoring:</strong> Tracking progress and making necessary adjustments.</li>
-        <li><strong>Scalability:</strong> Ensuring your business is ready for future growth and success.</li>
-      </ul>
-      <img src={successImage} alt="Growth Icon" className="card-icon" />
-    </div>
-  </div>
-</div>
-
-
+        <h2>Our Working Model</h2>
+        <div className="section-new">
+          <div
+            className="card-content"
+            onClick={() => navigate("/consultation")}
+          >
+            <h3>Consultation</h3>
+            <p>Tailored Guidance for Your Unique Needs</p>
+            <img
+              src={consultingImage}
+              alt="Consultation Icon"
+              className="card-icon"
+            />
+          </div>
+        </div>
+        <div className="section-new">
+          <div className="card-content" onClick={() => navigate("/analysis")}>
+            <h3>Analysis</h3>
+            <p>In-Depth Insights for Data-Driven Decisions</p>
+            <img
+              src={analysisImage}
+              alt="Analysis Icon"
+              className="card-icon"
+            />
+          </div>
+        </div>
+        <div className="section-new">
+          <div className="card-content" onClick={() => navigate("/success")}>
+            <h3>Growth & Success</h3>
+            <p>Achieving Excellence Through Continuous Improvement</p>
+            <img src={successImage} alt="Growth Icon" className="card-icon" />
+          </div>
+        </div>
+      </div>
       <div className="services-section">
         <h2>Our Services</h2>
-        <div className="service-cards">
-          <div className="service-card">
-            <h3>Business Transformation</h3>
-            <p>
-              We assist enterprises in driving sustainable growth through
-              innovative strategies and solutions tailored to their unique
-              challenges. Our expert team ensures a seamless transition and
-              continuous improvement for lasting success.
-            </p>
+        <div className="services-content">
+          <div className="services-list">
+            <ul>
+              {servicesList.map((service, index) => (
+                <li
+                className="services-list-li"
+                key={index}
+                onClick={() => navigate(`/what-we-do${service.anchor}`)}
+              >
+                {service.name}
+              </li>
+              ))}
+            </ul>
           </div>
-          <div className="service-card">
-            <h3>Educational Transformation</h3>
-            <p>
-              Our services empower educational institutions by integrating
-              cutting-edge technologies and progressive methodologies. We strive
-              to enhance the learning experience, making education more
-              accessible, engaging, and effective for all stakeholders.
-            </p>
-          </div>
-          <div className="service-card">
-            <h3>Healthcare Transformation</h3>
-            <p>
-              We revolutionize healthcare delivery by leveraging advanced
-              technologies and patient-centered care models. Our solutions aim
-              to improve healthcare outcomes, streamline operations, and foster
-              a compassionate environment for patients and providers alike.
-            </p>
+          <div className="services-carousel">
+            <Slider {...serviceSliderSettings}>
+              <div className="service-card">
+                <h3>Business Transformation</h3>
+                <p>
+                  We assist enterprises in driving sustainable growth through
+                  innovative strategies and solutions tailored to their unique
+                  challenges. Our expert team ensures a seamless transition and
+                  continuous improvement for lasting success.
+                </p>
+              </div>
+              <div className="service-card">
+                <h3>Educational Transformation</h3>
+                <p>
+                  Our services empower educational institutions by integrating
+                  cutting-edge technologies and progressive methodologies. We
+                  strive to enhance the learning experience, making education
+                  more accessible, engaging, and effective for all stakeholders.
+                </p>
+              </div>
+              <div className="service-card">
+                <h3>Healthcare Transformation</h3>
+                <p>
+                  We revolutionize healthcare delivery by leveraging advanced
+                  technologies and patient-centered care models. Our solutions
+                  aim to improve healthcare outcomes, streamline operations, and
+                  foster a compassionate environment for patients and providers
+                  alike.
+                </p>
+              </div>
+            </Slider>
           </div>
         </div>
       </div>

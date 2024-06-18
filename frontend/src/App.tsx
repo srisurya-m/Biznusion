@@ -32,6 +32,9 @@ const MyProfile = lazy(() => import("./pages/MyProfile"));
 const Lobby = lazy(() => import("./pages/video-call/Lobby"));
 const ScheduleCall = lazy(() => import("./pages/video-call/ScheduleCall"));
 const Room = lazy(() => import("./pages/video-call/Room"));
+const Consultation = lazy(() => import("./pages/Consultation"));
+const Analysis = lazy(() => import("./pages/Analysis"));
+const Success = lazy(() => import("./pages/Success"));
 
 function App() {
   const dispatch = useDispatch();
@@ -132,6 +135,9 @@ function App() {
             <Route path="/contact/video-call" element={<Lobby />} />
             <Route path="/contact/schedule-call" element={<ScheduleCall />} />
             <Route path="/room/:roomId" element={<Room />} />
+            <Route path="/consultation" element={<Consultation />} />
+            <Route path="/analysis" element={<Analysis />} />
+            <Route path="/success" element={<Success />} />
           </Routes>
           <Toaster position="top-center" />
         </Suspense>
