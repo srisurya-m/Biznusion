@@ -11,8 +11,9 @@ import cardImage4 from "../assets/cardImage-4.webp";
 import cardImage5 from "../assets/cardImage-5.webp";
 import cardImage6 from "../assets/cardImage-6.webp";
 import cardImage7 from "../assets/cardImage-7.webp";
-import consultingImage from "../assets/working-model-consulting.jpg";
+import homeBg from "../assets/home-bg.jpg";
 import analysisImage from "../assets/working-model-analysis.jpg";
+import consultingImage from "../assets/working-model-consulting.jpg";
 import successImage from "../assets/working-model-success.jpg";
 
 const cardData = [
@@ -205,6 +206,7 @@ const Home = () => {
   return (
     <>
       <div className="homepage">
+        <img className="home-background" src={homeBg} alt="home background" />
         <h1 className={`${isAnimated ? "slide-down" : "slide-up"}`}>
           <Typewriter options={typewriterOptions} />
         </h1>
@@ -272,12 +274,12 @@ const Home = () => {
             <ul>
               {servicesList.map((service, index) => (
                 <li
-                className="services-list-li"
-                key={index}
-                onClick={() => navigate(`/what-we-do${service.anchor}`)}
-              >
-                {service.name}
-              </li>
+                  className="services-list-li"
+                  key={index}
+                  onClick={() => navigate(`/what-we-do${service.anchor}`)}
+                >
+                  {service.name}
+                </li>
               ))}
             </ul>
           </div>
