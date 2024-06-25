@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
 import consultationImage from '../assets/consultation.png';
+import { useLocation } from 'react-router-dom';
 
 const Consultation = () => {
+  const location = useLocation();
   const contentRef = useRef(null);
 
   useEffect(() => {
@@ -28,8 +30,18 @@ const Consultation = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const hash = location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
+
   return (
-    <div className="consultation-container">
+    <div className="consultation-container" id='consultation-main'>
       <div className="image-container">
         <img src={consultationImage} alt="Consultation" className="consultation-image" />
       </div>

@@ -1,8 +1,10 @@
 import { useEffect, useRef } from "react";
 import successImage from "../assets/success.jpg";
+import { useLocation } from "react-router-dom";
 
 const Success = () => {
   const contentRef = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,8 +30,18 @@ const Success = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const hash = location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
+
   return (
-    <div className="success-container">
+    <div className="success-container" id="success-main">
       <div className="image-container">
         <img src={successImage} alt="Success" className="success-image" />
       </div>

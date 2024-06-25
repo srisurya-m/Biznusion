@@ -1,9 +1,21 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Career = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const hash = location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
   return (
     <div>
-      <div className="main">
+      <div className="main" id="career-main">
         <div className="center">
           <h1 className="heading">Careers</h1>
           <h2>Web Developer Intern</h2>

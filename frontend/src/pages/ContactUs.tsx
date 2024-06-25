@@ -1,11 +1,12 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { ContactFormType } from "../types/types";
 import { AiOutlineNotification } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ContactUs = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const handleBookSlot = () => {
     alert("AI enabled Chat Bot, feature is coming soon!");
@@ -45,9 +46,19 @@ const ContactUs = () => {
     }
   };
 
+  useEffect(() => {
+    const hash = location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
+
   return (
     <>
-      <div className="contact-us-main">
+      <div className="contact-us-main" id="main">
         <div className="contact-us-center-form">
           <h1 className="contact-us-title">Contact Us</h1>
           <form className="contact-us-form" onSubmit={submitHandler}>

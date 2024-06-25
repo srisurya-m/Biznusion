@@ -237,7 +237,7 @@ const Home = () => {
         <div className="section-new">
           <div
             className="card-content"
-            onClick={() => navigate("/consultation")}
+            onClick={() => navigate("/consultation#consultation-main")}
           >
             <h3>Consultation</h3>
             <p>Tailored Guidance for Your Unique Needs</p>
@@ -249,7 +249,7 @@ const Home = () => {
           </div>
         </div>
         <div className="section-new">
-          <div className="card-content" onClick={() => navigate("/analysis")}>
+          <div className="card-content" onClick={() => navigate("/analysis#analysis-main")}>
             <h3>Analysis</h3>
             <p>In-Depth Insights for Data-Driven Decisions</p>
             <img
@@ -260,7 +260,7 @@ const Home = () => {
           </div>
         </div>
         <div className="section-new">
-          <div className="card-content" onClick={() => navigate("/success")}>
+          <div className="card-content" onClick={() => navigate("/success#success-main")}>
             <h3>Growth & Success</h3>
             <p>Achieving Excellence Through Continuous Improvement</p>
             <img src={successImage} alt="Growth Icon" className="card-icon" />
@@ -342,12 +342,12 @@ const Home = () => {
       </div>
 
       <div className="queries">
-        <button className="contact-btn" onClick={() => navigate("/contact")}>Any Queries? Contact Us.</button>
+        <button className="contact-btn" onClick={() => navigate("/contact#main")}>Any Queries? Contact Us.</button>
       </div>
 
       <div className="join" ref={joinRef}>
         <h1>Want to Join Us?</h1>
-        <button onClick={() => navigate("/career")}>Let's Connect!</button>
+        <button onClick={() => navigate("/career#career-main")}>Let's Connect!</button>
       </div>
     </>
   );
