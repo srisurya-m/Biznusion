@@ -27,7 +27,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-x: hidden;
   .home-background {
+    overflow-x: hidden;
     position: absolute;
     top: 0;
     left: 0;
@@ -35,12 +37,14 @@
     height: 100%;
     object-fit: cover;
   }
-  @supports (animation-timeline: view()) {
-    .home-background {
-      transform-origin: bottom;
-      animation: background-image-animation linear forwards;
-      animation-timeline: view();
-      animation-range: exit;
+  @include hamburg(1024px){
+    @supports (animation-timeline: view()) {
+      .home-background {
+        transform-origin: bottom;
+        animation: background-image-animation linear forwards;
+        animation-timeline: view();
+        animation-range: exit;
+      }
     }
   }
 
@@ -196,6 +200,18 @@
   margin-top: 20px;
   height: 50vh;
   color: #ffffff;
+
+  @include breakpoint(768px) {
+    font-size: 3rem;
+    height: 30vh; 
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  @include breakpoint(480px) {
+    font-size: 3.5rem; 
+    height: 25vh; 
+  }
 }
 
 .sub-text {
@@ -203,7 +219,7 @@
   font-family: "Cursive", Georgia, "Times New Roman", Times, serif !important;
   text-align: center;
   height: 35vh;
-  margin-top: 10px;
+  margin-top: 5px;
   color: #ffffff;
 }
 
@@ -570,6 +586,69 @@ $gold: #ffd700;
     transform: translateY(0);
   }
 }
+
+.queries {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 90vh;
+  position: relative;
+  color: white;
+  text-align: center;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  
+  // Responsive adjustments
+  @include breakpoint(768px) {
+    height: 50vh; /* Adjust height for smaller screens */
+    padding: 10px;
+  }
+}
+
+.queries::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(127, 83, 228, 0.712); /* Bright overlay */
+  z-index: 0;
+}
+
+.contact-btn {
+  background-color: #6021ff; /* Previous button color */
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 1;
+  
+  // Responsive adjustments
+  @include breakpoint(768px) {
+    font-size: 1.2rem; /* Adjust font size for smaller screens */
+    padding: 8px 16px; /* Adjust padding */
+  }
+}
+
+.contact-btn:hover {
+  background-color: #4e17cc; /* Darker on hover */
+  transform: scale(1.05);
+}
+
+.contact-btn:active {
+  background-color: #3c13a3; /* Darker on click */
+  transform: scale(0.95);
+}
+
+
+
 
 .join {
   display: flex;

@@ -335,16 +335,19 @@ const Home = () => {
       </div>
 
       <div className="text-container">
-        <div className="value-text">360° value</div>
+        <div className="value-text">Transformation</div>
         <div className="sub-text">
-          Every day, we embrace change and create value for all our
-          stakeholders, in every part of the world.
+          We Provide Data Driven Solutions for Growth
         </div>
+      </div>
+
+      <div className="queries">
+        <button className="contact-btn" onClick={() => navigate("/contact")}>Any Queries? Contact Us.</button>
       </div>
 
       <div className="join" ref={joinRef}>
         <h1>Want to Join Us?</h1>
-        <button>Let's Connect!</button>
+        <button onClick={() => navigate("/career")}>Let's Connect!</button>
       </div>
     </>
   );
