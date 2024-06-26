@@ -12,6 +12,7 @@ import cardImage5 from "../assets/cardImage-5.webp";
 import cardImage6 from "../assets/cardImage-6.webp";
 import cardImage7 from "../assets/cardImage-7.webp";
 import homeBg from "../assets/home-bg.jpg";
+import ContacthomeBg from "../assets/home-contact-us-bg.avif";
 import analysisImage from "../assets/working-model-analysis.jpg";
 import consultingImage from "../assets/working-model-consulting.jpg";
 import successImage from "../assets/working-model-success.jpg";
@@ -224,11 +225,11 @@ const Home = () => {
         </div>
 
         <div className={`options ${isAnimated ? "slide-down" : "slide-up"}`}>
-          <button>Business Analysis</button>
-          <button>Consulting</button>
-          <button>Data science</button>
-          <button>Case Studies</button>
-          <button>Digital transformation</button>
+          <button onClick={()=>{navigate("/what-we-do#business-analysis")}}>Business Analysis</button>
+          <button onClick={()=>{navigate("/what-we-do#consulting")}}>Consulting</button>
+          <button onClick={()=>{navigate("/what-we-do#data-science")}}>Data science</button>
+          <button onClick={()=>{navigate("/case-studies#case-studies-main")}}>Case Studies</button>
+          <button onClick={()=>{navigate("/what-we-do#digital-marketing")}}>Digital transformation</button>
         </div>
       </div>
 
@@ -342,6 +343,7 @@ const Home = () => {
       </div>
 
       <div className="queries">
+        <img src={ContacthomeBg} alt=""  className="contactBg"/>
         <button className="contact-btn" onClick={() => navigate("/contact#main")}>Any Queries? Contact Us.</button>
       </div>
 

@@ -11,13 +11,13 @@ const Footer = () => {
               <Link to="/">About Us</Link>
             </li>
             <li>
-              <Link to="/">Internship</Link>
+              <Link to="/career#career-main">Internship</Link>
             </li>
             <li>
-              <Link to="/">Contact us</Link>
+              <Link to="/contact#main">Contact us</Link>
             </li>
             <li>
-              <Link to="/">Case Studies</Link>
+              <Link to="/case-studies#case-studies-main">Case Studies</Link>
             </li>
           </ul>
         </div>
@@ -25,22 +25,19 @@ const Footer = () => {
           <h3>What we do? </h3>
           <ul>
             <li>
-              <Link to="/">Data Analysis</Link>
+              <Link to="/what-we-do#business-analysis">Business Analysis</Link>
             </li>
             <li>
-              <Link to="/">Business Analysis</Link>
+              <Link to="/what-we-do#data-science">Big Data Analysis</Link>
             </li>
             <li>
-              <Link to="/">Big Data Analysis</Link>
+              <Link to="/what-we-do#consulting">Consulting</Link>
             </li>
             <li>
-              <Link to="/">Consulting</Link>
+              <Link to="/case-studies#case-studies-main">Business Solutions</Link>
             </li>
             <li>
-              <Link to="/">Business Solutions</Link>
-            </li>
-            <li>
-              <Link to="/">Digital Transformation</Link>
+              <Link to="/what-we-do#digital-marketing">Digital Transformation</Link>
             </li>
           </ul>
         </div>

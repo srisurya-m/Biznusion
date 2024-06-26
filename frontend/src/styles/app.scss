@@ -84,6 +84,25 @@ $color3: rgb(212, 215, 55);
   padding: 0 20px;
   box-sizing: border-box;
 
+  .big-screen-profile-icon {
+    @include breakpoint(1024px){
+      display: none;
+    }
+    img {
+      margin-top: 4px;
+      max-width: 50px;
+      max-height: 40px;
+      border-radius: 90px;
+      margin-bottom: 4px;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    margin-top: 4px;
+    border-radius: 90px;
+    margin-bottom: 4px;
+  }
+  
   .profile-icon {
     img {
       margin-top: 4px;

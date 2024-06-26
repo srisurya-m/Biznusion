@@ -59,14 +59,14 @@ const Header = () => {
       <div className="options">
         <Link to={"/explore"}>Explore</Link>
         <Link to={"/what-we-do"}>What we do ?</Link>
-        <Link to={"/growth-results"}>Growth Results</Link>
+        {/* <Link to={"/growth-results"}>Growth Results</Link> */}
         <Link to={"/case-studies"}>Case Studies</Link>
         <Link to={"/career"}>Career</Link>
         <Link to={"/contact"}>
           <button>Contact</button>
         </Link>
       </div>
-      <div className="profile-icon" onClick={toggleSidebar}>
+      <div className="big-screen-profile-icon" onClick={toggleSidebar}>
         {user ? (
           <img src={user.photo} alt="Profile" style={{ marginTop: "8.5px" }} />
         ) : (
@@ -90,6 +90,21 @@ const Header = () => {
             <div className="cross" onClick={toggleSidebar}>
               <FaTimes />
             </div>
+            <div className="profile-icon" onClick={toggleSidebar}>
+        {user ? (
+          <img src={user.photo} alt="Profile" style={{ marginTop: "8.5px" }} />
+        ) : (
+          <FiLogIn
+            onClick={handleLoginClick}
+            style={{
+              width: "30px",
+              height: "50px",
+              color: "black",
+              marginTop: "6.5px",
+            }}
+          />
+        )}
+      </div>
             {user ? (
               <Link to={`/my-profile/${user._id}`} onClick={closeSidebar}>
                 My Profile
