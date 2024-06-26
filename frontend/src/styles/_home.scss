@@ -202,15 +202,17 @@
   color: #ffffff;
 
   @include breakpoint(768px) {
-    font-size: 3rem;
+    font-size: 3rem !important;
     height: 30vh; 
-    width: 100%;
+    width: 80%;
+    // background-color: #000;
     margin-top: 15px;
   }
 
   @include breakpoint(480px) {
     font-size: 3.5rem; 
     height: 25vh; 
+    width: 70%;
   }
 }
 
