@@ -202,9 +202,9 @@
   color: #ffffff;
 
   @include breakpoint(768px) {
-    font-size: 3rem !important;
+    font-size: 2rem !important;
     height: 30vh; 
-    width: 80%;
+    width: 100%;
     // background-color: #000;
     margin-top: 15px;
   }
