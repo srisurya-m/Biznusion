@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { FiLogIn } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -81,9 +81,9 @@ const Header = () => {
           />
         )}
       </div>
-      {/* <div className="hamburg" onClick={toggleSidebar}>
+      <div className="hamburg" onClick={toggleSidebar}>
         <FaBars size="1.8em" />
-      </div> */}
+      </div>
       {isSidebarOpen && (
         <div className="sidebar" style={{ transform: "translateX(0)" }}>
           <div className="sidebar-content">
