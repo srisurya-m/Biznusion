@@ -196,12 +196,14 @@ const Home = () => {
   };
 
   const servicesList = [
-    { name: "Business Analysis", anchor: "#business-analysis" },
-    { name: "Data Science", anchor: "#data-science" },
-    { name: "Big Data Analysis", anchor: "#big-data-analysis" },
-    { name: "Consulting", anchor: "#consulting" },
-    { name: "Solving Business Problems", anchor: "#solving-business-problems" },
-    { name: "Digital Marketing", anchor: "#digital-marketing" },
+    { name: "Predictive Analytics and Machine Learning", anchor: "#predictive-analytics-1" },
+    { name: "Business Intelligence and Data Visualization", anchor: "#business-intelligence-2" },
+    { name: "Natural Language Processing", anchor: "#natural-language-processing-3" },
+    { name: "Deep Learning and AI Applications", anchor: "#deep-learning-4" },
+    { name: "Big Data Processing", anchor: "#big-data-processing-5" },
+    { name: "Data Engineering", anchor: "#data-engineering-6" },
+    { name: "Database Management and Optimization", anchor: "#database-management-7" },
+    { name: "Cloud Computing and Deployment", anchor: "#cloud-computing-8" },
   ];
 
   return (
