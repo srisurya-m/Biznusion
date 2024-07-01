@@ -17,7 +17,7 @@ const servicesData = [
     description:
       "Using advanced algorithms and statistical models, we predict future trends and behaviors to help businesses make informed decisions. Our expertise in machine learning enables us to build models that can learn from data, identify patterns, and make accurate predictions.",
     projects: [
-      { name: "Customer churn prediction"},
+      { name: "Customer churn prediction" },
       { name: "Sales forecasting" },
       { name: "Demand prediction" },
       { name: "Recommendation systems" },
@@ -39,7 +39,7 @@ const servicesData = [
       { name: "KPI tracking" },
     ],
     skills: ["Power BI", "Tableau", "SQL", "Python (matplotlib, Plotly)"],
-    icon: FaDatabase
+    icon: FaDatabase,
   },
   {
     id: "natural-language-processing-3",
@@ -52,7 +52,7 @@ const servicesData = [
       { name: "Machine translation" },
     ],
     skills: ["Python", "NLTK", "spaCy", "BERT", "GPT"],
-    icon:FaBrain
+    icon: FaBrain,
   },
   {
     id: "deep-learning-4",
@@ -62,10 +62,10 @@ const servicesData = [
     projects: [
       { name: "Image and video recognition" },
       { name: "Speech recognition" },
-      { name: "Autonomous systems"},
+      { name: "Autonomous systems" },
     ],
     skills: ["Python", "TensorFlow", "PyTorch", "CNNs", "RNNs"],
-    icon:FaLanguage
+    icon: FaLanguage,
   },
   {
     id: "big-data-processing-5",
@@ -77,8 +77,8 @@ const servicesData = [
       { name: "Real-time data processing" },
       { name: "Big data analytics" },
     ],
-    skills: ["Hadoop", "Spark", "SQL","", "NoSQL databases"],
-    icon:FaServer
+    skills: ["Hadoop", "Spark", "SQL", "", "NoSQL databases"],
+    icon: FaServer,
   },
   {
     id: "data-engineering-6",
@@ -91,7 +91,7 @@ const servicesData = [
       { name: "Data warehousing" },
     ],
     skills: ["SQL", "Python", "Apache Airflow", "ETL tools"],
-    icon:FaTools
+    icon: FaTools,
   },
   {
     id: "database-management-7",
@@ -104,7 +104,7 @@ const servicesData = [
       { name: "Data migration" },
     ],
     skills: ["SQL", "MySQL", "PostgreSQL", "MongoDB"],
-    icon:FaDatabase
+    icon: FaDatabase,
   },
   {
     id: "cloud-computing-8",
@@ -114,11 +114,9 @@ const servicesData = [
     projects: [
       {
         name: "Deploying machine learning models on the cloud",
-        
       },
       {
         name: "Setting up cloud-based data warehouses",
-        
       },
     ],
     skills: [
@@ -128,7 +126,7 @@ const servicesData = [
       "Docker",
       "Kubernetes",
     ],
-    icon:FaCloud
+    icon: FaCloud,
   },
 ];
 
@@ -149,7 +147,8 @@ const Whatwedo = () => {
     const scrollers = document.querySelectorAll<HTMLDivElement>(".scroller");
 
     scrollers.forEach((scroller) => {
-      const scrollerInner = scroller.querySelector<HTMLDivElement>(".scroller__inner");
+      const scrollerInner =
+        scroller.querySelector<HTMLDivElement>(".scroller__inner");
       if (!scrollerInner) return;
 
       const scrollerContent = Array.from(scrollerInner.children);
@@ -167,28 +166,26 @@ const Whatwedo = () => {
       <h2>Our Services</h2>
       <div className="whatwedo-center">
         {servicesData.map((service) => (
-          (
-            <div key={service.id} id={service.id} className="content-container">
-              <div className="heading">
-                <h3>{service.title}</h3>
-              </div>
-              <div className="content">
-                <p>{service.description}</p>
-                <service.icon className="icon" />
-                <div className="projects">
-                  <h4>Our Work in this Domain:</h4>
-                  <div className="scroller" data-animated="true" data-speed="slow" data-direction="right">
-                <div className="scroller__inner">
+          <div key={service.id} id={service.id} className="content-container">
+            <div className="heading">
+              <h3>{service.title}</h3>
+            </div>
+            <div className="content">
+              <p>{service.description}</p>
+              <service.icon className="icon" />
+              <div className="projects">
+                <h4>Our Work in this Domain:</h4>
+                <div className="projects-list">
                   {service.projects.map((project) => (
-                    <div key={project.name} className="scroller__inner">
+                    <div key={project.name} className="project-item">
                       <p>{project.name}</p>
                     </div>
                   ))}
                 </div>
-              </div>  
-                </div>
-                <h4>Technologies used:</h4>
-                <div className="scroller" data-animated="true" data-speed="slow">
+              </div>
+
+              <h4 style={{marginTop:"16px"}}>Technologies used:</h4>
+              <div className="scroller" data-animated="true" data-speed="slow">
                 <div className="scroller__inner">
                   {service.skills.map((skill) => (
                     <div key={skill} className="scroller__inner">
@@ -196,10 +193,9 @@ const Whatwedo = () => {
                     </div>
                   ))}
                 </div>
-              </div>                
               </div>
             </div>
-          )
+          </div>
         ))}
       </div>
     </div>
