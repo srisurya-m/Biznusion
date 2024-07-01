@@ -1,6 +1,136 @@
-import { useEffect } from 'react';
-import { FaBusinessTime, FaChartLine, FaDatabase, FaHandshake, FaLightbulb, FaBullhorn } from 'react-icons/fa';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import {
+  FaBusinessTime,
+  FaLanguage,
+  FaBrain,
+  FaServer,
+  FaTools,
+  FaDatabase,
+  FaCloud,
+} from "react-icons/fa";
+import { useLocation } from "react-router-dom";
+
+const servicesData = [
+  {
+    id: "predictive-analytics-1",
+    title: "Predictive Analytics and Machine Learning",
+    description:
+      "Using advanced algorithms and statistical models, we predict future trends and behaviors to help businesses make informed decisions. Our expertise in machine learning enables us to build models that can learn from data, identify patterns, and make accurate predictions.",
+    projects: [
+      { name: "Customer churn prediction"},
+      { name: "Sales forecasting" },
+      { name: "Demand prediction" },
+      { name: "Recommendation systems" },
+    ],
+    skills: ["Python", "R", "scikit-learn", "TensorFlow", "PyTorch"],
+    icon: FaBusinessTime,
+  },
+  {
+    id: "business-intelligence-2",
+    title: "Business Intelligence and Data Visualization",
+    description:
+      "We transform raw data into meaningful insights through interactive dashboards and visualizations. Our business intelligence solutions help organizations monitor key performance indicators (KPIs), track progress, and make data-driven decisions.",
+    projects: [
+      { name: "Building interactive dashboards" },
+      {
+        name: "Real-time data monitoring systems",
+        image: "path/to/image6.jpg",
+      },
+      { name: "KPI tracking" },
+    ],
+    skills: ["Power BI", "Tableau", "SQL", "Python (matplotlib, Plotly)"],
+    icon: FaDatabase
+  },
+  {
+    id: "natural-language-processing-3",
+    title: "Natural Language Processing (NLP)",
+    description:
+      "Our NLP solutions enable machines to understand and interpret human language, facilitating tasks such as sentiment analysis, text summarization, and machine translation. We harness the power of language models to unlock valuable insights from text data.",
+    projects: [
+      { name: "Sentiment analysis" },
+      { name: "Text summarization" },
+      { name: "Machine translation" },
+    ],
+    skills: ["Python", "NLTK", "spaCy", "BERT", "GPT"],
+    icon:FaBrain
+  },
+  {
+    id: "deep-learning-4",
+    title: "Deep Learning and AI Applications",
+    description:
+      "We develop cutting-edge AI applications using deep learning techniques. Our projects include image and video recognition, speech recognition, and autonomous systems, leveraging the power of neural networks to solve complex problems.",
+    projects: [
+      { name: "Image and video recognition" },
+      { name: "Speech recognition" },
+      { name: "Autonomous systems"},
+    ],
+    skills: ["Python", "TensorFlow", "PyTorch", "CNNs", "RNNs"],
+    icon:FaLanguage
+  },
+  {
+    id: "big-data-processing-5",
+    title: "Big Data Processing",
+    description:
+      "Our expertise in big data technologies allows us to handle and analyze large volumes of data efficiently. We provide solutions for data warehousing, real-time data processing, and big data analytics, helping businesses gain valuable insights from their data.",
+    projects: [
+      { name: "Data warehousing" },
+      { name: "Real-time data processing" },
+      { name: "Big data analytics" },
+    ],
+    skills: ["Hadoop", "Spark", "SQL","", "NoSQL databases"],
+    icon:FaServer
+  },
+  {
+    id: "data-engineering-6",
+    title: "Data Engineering",
+    description:
+      "We build robust ETL pipelines and data integration solutions to ensure seamless data flow across systems. Our data engineering services include data warehousing and data architecture design, enabling organizations to manage their data efficiently.",
+    projects: [
+      { name: "ETL pipelines" },
+      { name: "Data integration" },
+      { name: "Data warehousing" },
+    ],
+    skills: ["SQL", "Python", "Apache Airflow", "ETL tools"],
+    icon:FaTools
+  },
+  {
+    id: "database-management-7",
+    title: "Database Management and Optimization",
+    description:
+      "Our database management services ensure optimal performance and reliability of your databases. We specialize in database design, performance tuning, and data migration, providing solutions that enhance data accessibility and efficiency.",
+    projects: [
+      { name: "Database design" },
+      { name: "Performance tuning" },
+      { name: "Data migration" },
+    ],
+    skills: ["SQL", "MySQL", "PostgreSQL", "MongoDB"],
+    icon:FaDatabase
+  },
+  {
+    id: "cloud-computing-8",
+    title: "Cloud Computing and Deployment",
+    description:
+      "We deploy machine learning models and data solutions on cloud platforms to ensure scalability and flexibility. Our cloud computing services include setting up cloud-based data warehouses and CI/CD pipelines, enabling efficient and secure data processing.",
+    projects: [
+      {
+        name: "Deploying machine learning models on the cloud",
+        
+      },
+      {
+        name: "Setting up cloud-based data warehouses",
+        
+      },
+    ],
+    skills: [
+      "AWS",
+      "Azure",
+      "Google Cloud Platform (GCP)",
+      "Docker",
+      "Kubernetes",
+    ],
+    icon:FaCloud
+  },
+];
 
 const Whatwedo = () => {
   const location = useLocation();
@@ -10,86 +140,67 @@ const Whatwedo = () => {
     if (hash) {
       const element = document.querySelector(hash);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: "smooth" });
       }
     }
   }, [location]);
+
+  useEffect(() => {
+    const scrollers = document.querySelectorAll<HTMLDivElement>(".scroller");
+
+    scrollers.forEach((scroller) => {
+      const scrollerInner = scroller.querySelector<HTMLDivElement>(".scroller__inner");
+      if (!scrollerInner) return;
+
+      const scrollerContent = Array.from(scrollerInner.children);
+
+      scrollerContent.forEach((item) => {
+        const duplicatedItem = item.cloneNode(true) as HTMLDivElement;
+        duplicatedItem.setAttribute("aria-hidden", "true");
+        scrollerInner.appendChild(duplicatedItem);
+      });
+    });
+  }, []);
 
   return (
     <div className="whatwedo-main">
       <h2>Our Services</h2>
       <div className="whatwedo-center">
-        <div id="business-analysis" className="content-container">
-          <div className="heading">
-            <h3>Business Analysis</h3>
-          </div>
-          <div className="content">
-            <p>
-              Our team of experts can analyze your business processes and provide insights to improve efficiency and profitability. We conduct thorough assessments of your operational procedures, identifying bottlenecks and areas for improvement. With data-driven methodologies, we deliver actionable recommendations to optimize workflows, reduce costs, and enhance overall business performance. Business analysis involves understanding your business environment, aligning strategies with business objectives, and ensuring that the solutions provided are both feasible and sustainable.
-            </p>
-            <FaBusinessTime className="icon" />
-          </div>
-        </div>
-
-        <div id="data-science" className="content-container">
-          <div className="heading">
-            <h3>Data Science</h3>
-          </div>
-          <div className="content">
-            <p>
-              Utilizing advanced analytics and machine learning, we can extract valuable insights from your data to drive informed decisions. Our data scientists apply statistical techniques and predictive modeling to uncover hidden patterns and trends within your datasets. This enables you to make data-driven decisions that enhance business strategies, customer experiences, and operational efficiencies. Our data science services also include data cleaning, data visualization, and creating machine learning models to predict future trends and behaviors, providing you with a competitive edge.
-            </p>
-            <FaChartLine className="icon" />
-          </div>
-        </div>
-
-        <div id="big-data-analysis" className="content-container">
-          <div className="heading">
-            <h3>Big Data Analysis</h3>
-          </div>
-          <div className="content">
-            <p>
-              We specialize in handling large datasets to uncover patterns, trends, and opportunities that can benefit your business. Our big data solutions involve the collection, storage, and analysis of vast amounts of data from various sources. By leveraging cutting-edge technologies and analytical tools, we help you gain a competitive edge through comprehensive insights and strategic intelligence. Big data analysis can improve decision-making processes, personalize customer experiences, and identify new business opportunities, all while managing the volume, velocity, and variety of your data.
-            </p>
-            <FaDatabase className="icon" />
-          </div>
-        </div>
-
-        <div id="consulting" className="content-container">
-          <div className="heading">
-            <h3>Consulting</h3>
-          </div>
-          <div className="content">
-            <p>
-              Our consulting services cover a wide range of business areas, including strategy, operations, technology, and more. We work closely with your team to understand your unique challenges and objectives. Our consultants provide expert advice, tailored solutions, and implementation support to help you achieve your business goals, improve performance, and drive growth. Consulting involves not just providing advice but also ensuring that the solutions are implemented effectively and efficiently. Our approach is collaborative, working with you to achieve sustainable success.
-            </p>
-            <FaHandshake className="icon" />
-          </div>
-        </div>
-
-        <div id="solving-business-problems" className="content-container">
-          <div className="heading">
-            <h3>Solving Business Problems</h3>
-          </div>
-          <div className="content">
-            <p>
-              We excel in identifying and solving complex business problems, helping you overcome challenges and achieve your goals. Our approach involves a deep understanding of your business environment, critical thinking, and innovative solutions. Whether you face operational inefficiencies, market challenges, or strategic dilemmas, our team provides the expertise and tools needed to address and resolve them effectively. Problem-solving involves root cause analysis, brainstorming potential solutions, and implementing the most viable option while continuously monitoring its effectiveness.
-            </p>
-            <FaLightbulb className="icon" />
-          </div>
-        </div>
-
-        <div id="digital-marketing" className="content-container">
-          <div className="heading">
-            <h3>Digital Marketing</h3>
-          </div>
-          <div className="content">
-            <p>
-              From SEO and social media to content creation and advertising, we can enhance your online presence and drive growth. Our digital marketing strategies are designed to reach your target audience effectively and efficiently. We utilize data-driven approaches to optimize your marketing campaigns, ensuring maximum ROI. Digital marketing includes search engine optimization (SEO), pay-per-click (PPC) advertising, social media management, email marketing, and content marketing. Our goal is to increase your brand awareness, engage your customers, and boost your online conversions.
-            </p>
-            <FaBullhorn className="icon" />
-          </div>
-        </div>
+        {servicesData.map((service) => (
+          (
+            <div key={service.id} id={service.id} className="content-container">
+              <div className="heading">
+                <h3>{service.title}</h3>
+              </div>
+              <div className="content">
+                <p>{service.description}</p>
+                <service.icon className="icon" />
+                <div className="projects">
+                  <h4>Our Work in this Domain:</h4>
+                  <div className="scroller" data-animated="true" data-speed="slow" data-direction="right">
+                <div className="scroller__inner">
+                  {service.projects.map((project) => (
+                    <div key={project.name} className="scroller__inner">
+                      <p>{project.name}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>  
+                </div>
+                <h4>Technologies used:</h4>
+                <div className="scroller" data-animated="true" data-speed="slow">
+                <div className="scroller__inner">
+                  {service.skills.map((skill) => (
+                    <div key={skill} className="scroller__inner">
+                      <p>{skill}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>                
+              </div>
+            </div>
+          )
+        ))}
       </div>
     </div>
   );

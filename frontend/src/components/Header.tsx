@@ -118,9 +118,6 @@ const Header = () => {
             <Link to={"/what-we-do"} onClick={closeSidebar}>
               What we do ?
             </Link>
-            <Link to={"/growth-results"} onClick={closeSidebar}>
-              Growth Results
-            </Link>
             <Link to={"/case-studies"} onClick={closeSidebar}>
               Case Studies
             </Link>
