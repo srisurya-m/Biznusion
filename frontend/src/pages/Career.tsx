@@ -68,7 +68,7 @@ const Career = () => {
             <li>Strong analytical and problem-solving skills</li>
             <li>Proficiency in programming languages such as Python or R</li>
             <li>Ability to work independently and in a team environment</li>
-            <div className="sublist"><li>© 2024 Your Company. All rights reserved.</li></div>
+            <div className="sublist"><li>© 2024 Biznusion. All rights reserved.</li></div>
           </ul>
         </div>
       </div>
