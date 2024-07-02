@@ -161,6 +161,22 @@
           -ms-overflow-style: none;  /* IE and Edge */
           scrollbar-width: none;  /* Firefox */
         }
+        &:active {
+          overflow-x: auto; 
+          -webkit-mask: none; 
+          mask: none;
+          
+          .scroller__inner {
+            animation-play-state: paused; 
+          }
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        
+          /* Hide scrollbar for other browsers */
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
       }
       
       .scroller__inner {
