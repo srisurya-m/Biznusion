@@ -2,6 +2,10 @@
   padding: 40px;
   font-family: 'Arial, sans-serif';
 
+  @include breakpoint(768px) {
+    padding: 20px;
+  }
+
   .career-main {
     display: flex;
     justify-content: center;
@@ -20,6 +24,15 @@
         transform: scale(1.02);
       }
 
+      @include breakpoint(1024px) {
+        width: 85%;
+      }
+
+      @include breakpoint(768px) {
+        width: 100%;
+        padding: 20px;
+      }
+
       .career-heading {
         text-align: center;
         font-size: 4em;
@@ -27,6 +40,14 @@
         background: linear-gradient(90deg, #ffffff 0%, #dcdcdc 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+
+        @include breakpoint(1024px) {
+          font-size: 3em;
+        }
+
+        @include breakpoint(768px) {
+          font-size: 2.5em;
+        }
       }
 
       .position-title {
@@ -38,6 +59,14 @@
 
         &:hover {
           color: #ff3e88;
+        }
+
+        @include breakpoint(1024px) {
+          font-size: 1.8em;
+        }
+
+        @include breakpoint(768px) {
+          font-size: 1.6em;
         }
       }
 
@@ -99,6 +128,14 @@
           font-size: 1.6em;
           margin-top: 25px;
           color: #000000;
+
+          @include breakpoint(1024px) {
+            font-size: 1.4em;
+          }
+
+          @include breakpoint(768px) {
+            font-size: 1.2em;
+          }
         }
 
         .sublist {
