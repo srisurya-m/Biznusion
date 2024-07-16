@@ -3,38 +3,77 @@
   justify-content: center;
   align-items: start;
   margin-top: 40px;
+
+  @include breakpoint(768px) {
+    margin-top: 45px;
+  }
+
   .center-form {
+    padding: 10px;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    width: 50%;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+
+    @include breakpoint(1024px) {
+      width: 70%;
+    }
+
+    @include breakpoint(768px) {
+      width: 90%;
+    }
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
     .webdev {
       padding: 20px;
     }
-    padding: 10px;
-    background-color: rgb(69, 65, 65);
-    width: 50%;
-    color: white;
 
     .form {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
       input {
         padding: 10px;
         margin-bottom: 10px;
+
+        @include breakpoint(768px) {
+          padding: 8px;
+          margin-bottom: 8px;
+        }
       }
+
       > label {
         margin-bottom: 20px;
+
+        @include breakpoint(768px) {
+          margin-bottom: 15px;
+        }
       }
+
       > button {
         outline: none;
         background-color: #007bff;
         color: #fff;
         padding: 10px 20px;
         border: none;
-        border-radius: 3px;
+        border-radius:  0 0 20px 20px;
         cursor: pointer;
-        &:hover{
+        width: 100%;
+        transition: background-color 0.3s;
+
+        &:hover {
           background-color: #002fff;
         }
-        width: 100%;
+
+        @include breakpoint(768px) {
+          padding: 8px 16px;
+        }
       }
     }
   }
