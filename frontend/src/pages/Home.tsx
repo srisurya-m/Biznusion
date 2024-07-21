@@ -24,7 +24,7 @@ const cardData = [
     subHeading:
       "Creating five-star associate experiences: Marriott International",
     description:
-      "Biznusion International created a new global HR hub that delivers employee experiences as exceptional as the guest experiences.",
+      "FusionX International created a new global HR hub that delivers employee experiences as exceptional as the guest experiences.",
   },
   {
     image: cardImage2,
@@ -42,7 +42,7 @@ const cardData = [
     image: cardImage4,
     heading: "ANNOUNCEMENT",
     subHeading:
-      "Biznusion takes new steps to help clients scale generative Al responsibly",
+      "FusionX takes new steps to help clients scale generative Al responsibly",
     description: "This is the description for card 2.",
   },
   {
